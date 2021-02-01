@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,28 +14,45 @@ import com.revature.data.UserDAO;
 
 @Service
 public class UserService {
-	private final UserDAO uDao;
+	private final UserDAO userDao;
 	
 	@Autowired 
 	UserService(UserDAO u) {
-		uDao = u;	
+		userDao = u;	
 	}
-	public void addUser(User u) {
-		User user = uDao.findUserByName(u.getName());
-		if (user != null) { // catch an exception for this instead
-			return;
-		} else {
-			uDao.save(u);
-		}
+	public Integer addUser(User u) {
+//		User user = userDao.findUserByName(u.getUsername());
+//		if (user != null) { // catch an exception for this instead
+//			return -1;
+//		} else {
+			userDao.save(u);
+//		}
+		return u.getUserid();
 	}
 	public User getUser(int id) {
 		System.out.println("get reached");
-		User user = uDao.findById(id).get();
+		User user = userDao.findById(id).get();
 		if (user != null) {
 			return user;
 		} else {
 			return null;
 		}
     }
+	
+	public User getUserByUsername(String username) {
+		return userDao.findUserByName(username);
+	}
+	
+	public List<User> getAllUsers(){
+		return userDao.findAll();
+	}
+	
+	public void updateUser(User u) {
+		userDao.save(u);
+	}
+	
+	public void deleteUser(User u) {
+		userDao.delete(u);
+	}
 }	
 	
