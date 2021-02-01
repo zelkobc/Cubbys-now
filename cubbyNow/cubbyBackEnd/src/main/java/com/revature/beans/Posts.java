@@ -10,7 +10,8 @@ public class Posts {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int postid;
-	@OneToOne(mappedBy="users", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToOne(targetEntity=User.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinTable(name="users")
 	private int authorid;
 	@Column(name="pcontent")
 	private String content;

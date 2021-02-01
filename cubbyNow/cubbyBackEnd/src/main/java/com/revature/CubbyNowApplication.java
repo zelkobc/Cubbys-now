@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @RestController
-@ComponentScan(basePackages= {"com.revature.services.*"}) // For some reason, the project has broken into modules and those annotations are now necessary.
-@EnableJpaRepositories(basePackages= {"com.revature.data.*"})
-@EntityScan(basePackages={"com.revature.beans.*"})
+//@ComponentScan(basePackages= {"com.revature.controllers.*", "com.revature.services.*"}) // For some reason, the project has broken into modules and those annotations are now necessary.
+//@EnableJpaRepositories(basePackages= {"com.revature.data.*"})
+//@EntityScan(basePackages={"com.revature.beans.*"})
 public class CubbyNowApplication {
 
 	public static void main(String[] args) {
@@ -34,5 +34,6 @@ public class CubbyNowApplication {
 //                        .allowedOrigins("*").allowedHeaders("*").allowCredentials(true); 
 //            }
 //        };
-    }
+//    }
+}
 

@@ -7,24 +7,24 @@ import org.hibernate.annotations.Check;
 @Entity
 @Table(name="votes")
 public class PitchVote {
-	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinTable(name="pitches")
-	private int pitchid;
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinTable(name="users")
-	private int userid;
-	@Column(name="votevalue")
-	@Check(constraints = "votevalue <= 100")
-	private int rating;
+
 	@Id
 	@Column(name="vote_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int voteid;
+	@ManyToOne(targetEntity=Posts.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private int pitch_id;
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private int user_id;
+	@Column(name="votevalue")
+	@Check(constraints = "votevalue <= 100")
+	private int rating;
+
 	
 @Override
 	public String toString() {
-		return "PitchVote [pitchid=" + pitchid + ", userid=" + userid + ", rating=" + rating + ", voteid=" + voteid
+		return "PitchVote [pitchid=" + pitch_id + ", userid=" + user_id + ", rating=" + rating + ", voteid=" + voteid
 				+ "]";
 	}
 
@@ -32,9 +32,9 @@ public class PitchVote {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + pitchid;
+		result = prime * result + pitch_id;
 		result = prime * result + rating;
-		result = prime * result + userid;
+		result = prime * result + user_id;
 		result = prime * result + voteid;
 		return result;
 	}
@@ -48,11 +48,11 @@ public class PitchVote {
 		if (getClass() != obj.getClass())
 			return false;
 		PitchVote other = (PitchVote) obj;
-		if (pitchid != other.pitchid)
+		if (pitch_id != other.pitch_id)
 			return false;
 		if (rating != other.rating)
 			return false;
-		if (userid != other.userid)
+		if (user_id != other.user_id)
 			return false;
 		if (voteid != other.voteid)
 			return false;
@@ -60,19 +60,19 @@ public class PitchVote {
 	}
 
 public int getPitchid() {
-		return pitchid;
+		return pitch_id;
 	}
 
 	public void setPitchid(int pitchid) {
-		this.pitchid = pitchid;
+		this.pitch_id = pitchid;
 	}
 
 	public int getUserid() {
-		return userid;
+		return user_id;
 	}
 
 	public void setUserid(int userid) {
-		this.userid = userid;
+		this.user_id = userid;
 	}
 
 	public int getRating() {
@@ -92,8 +92,8 @@ public int getPitchid() {
 	}
 
 public PitchVote() {
-	pitchid = 0;
-	userid = 0;
+	pitch_id = 0;
+	user_id = 0;
 	rating = 0;
 	voteid= 0;
 }
