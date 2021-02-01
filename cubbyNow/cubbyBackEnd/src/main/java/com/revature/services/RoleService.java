@@ -1,6 +1,6 @@
 package com.revature.services;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +29,29 @@ public class RoleService {
 			return null;
 		}
 	}
+    
+     // Create
+	 public Integer addRole(Role role){
+	     return rDao.save(role).getId();
+	 }
+
+     // Read
+	 public Role getRole(Integer id){
+	     return rDao.findById(id).get();
+	 }
+
+	 public List<Role> getAllRoles(){
+	     return rDao.findAll();
+	 }
+
+	 // Update
+     public void updateRole(Role role){
+         rDao.save(role);
+     }
+
+     // Delete
+     public void deleteRole(Integer id){
+         Role role = rDao.findById(id).get();
+         rDao.delete(role);
+     }
 }
