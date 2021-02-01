@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="posts")
-public class Posts {
+@Table(name="post")
+public class Post {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,7 +50,7 @@ public class Posts {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Posts other = (Posts) obj;
+		Post other = (Post) obj;
 		if (authorid != other.authorid)
 			return false;
 		if (content == null) {
@@ -66,7 +66,7 @@ public class Posts {
 	public String toString() {
 		return "Post [postid=" + postid + ", authorid=" + authorid + ", content=" + content + "]";
 	}
-	public Posts() {
+	public Post() {
 		postid = 0;
 		authorid = 0;
 		content = "";
