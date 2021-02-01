@@ -2,7 +2,13 @@ package com.revature.controllers;
 
 import com.revature.services.*;
 import com.revature.beans.*;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +26,78 @@ public class UserController {
 	}
 	@GetMapping(path ="/{userId}")
 	public ResponseEntity<User> getUserById(@PathVariable int userId){
-	System.out.println(userId + "line!");
-	User u = this.userService.getUser(userId);
-	if(u != null) {
-		return ResponseEntity.ok(u);
-	} else {
+		System.out.println(userId + "line!");
+		User u = this.userService.getUser(userId);
+		if(u != null) {
+			return ResponseEntity.ok(u);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@GetMapping(path = "/all")
+	public ResponseEntity<List<User>> getUsers(){
+		List<User> users = this.userService.getAllUsers();
+		
+		if(users != null) {
+			return ResponseEntity.ok(users);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	//Probably not needed
+//	@GetMapping
+//	public ResponseEntity<User> checkLogin(HttpSession session){
+//		User supposedLoggedInUser = (User) session.getAttribute("user");
+//		if (supposedLoggedInUser == null) {
+//			return ResponseEntity.badRequest().build();
+//		}
+//		return ResponseEntity.ok(supposedLoggedInUser);
+//	}
+	
+	@PutMapping
+	public ResponseEntity<User> logIn(@RequestParam("user") String username,
+			@RequestParam("pass") String password){
+		User User = userService.getUserByUsername(username);
+		if (User != null) {
+			if (User.getPassword().equals(password)) {
+				return ResponseEntity.ok(User);
+			}
+			return ResponseEntity.badRequest().build();
+		}
+		
 		return ResponseEntity.notFound().build();
 	}
+	
+	@PutMapping(path = "/{id}")
+	public ResponseEntity<Void> updateUser(HttpSession session, @PathVariable("id") Integer id,
+			@RequestBody User user){
+		User loggedUser = (User) session.getAttribute("user");
+		if(loggedUser != null && loggedUser.getUserid().equals(id)) {
+			userService.updateUser(user);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
+	
+//This method should only be used by the teacher if at all
+//	@PostMapping
+//	public ResponseEntity<User> registerUser(@RequestBody User User) {
+//		userService.addUser(User);
+//		return ResponseEntity.ok(User);
+//	}
+	
+	
+	@DeleteMapping
+	public ResponseEntity<Void> logOut(HttpSession session) {
+		session.invalidate();
+		return ResponseEntity.ok().build();
+	}
+	
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Void> deleteUser(@PathVariable("id") Integer id){
+		userService.deleteUser(userService.getUser(id));
+		return ResponseEntity.ok().build();
 	}
 }
