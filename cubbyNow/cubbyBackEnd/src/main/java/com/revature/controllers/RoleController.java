@@ -79,7 +79,6 @@ public class RoleController {
 	// Delete
 	@DeleteMapping(path="/{id}")
 	public ResponseEntity<Void> deleteRole(@PathVariable Integer id){
-	    System.out.println(id);
 	    roleService.deleteRole(id);
 	    return ResponseEntity.ok().build();
 	}

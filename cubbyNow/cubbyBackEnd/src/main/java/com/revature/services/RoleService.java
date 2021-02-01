@@ -51,7 +51,6 @@ public class RoleService {
 
      // Delete
      public void deleteRole(Integer id){
-         System.out.println(id);
          Role role = rDao.findById(id).get();
          rDao.delete(role);
      }
