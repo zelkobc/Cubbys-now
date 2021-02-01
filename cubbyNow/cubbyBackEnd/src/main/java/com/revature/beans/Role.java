@@ -10,6 +10,7 @@ public class Role {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 @Column(name="role_id")
 private Integer id;
+@Column(name="rname")
 private String name;
 
 

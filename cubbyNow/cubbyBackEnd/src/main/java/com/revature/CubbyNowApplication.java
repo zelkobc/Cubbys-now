@@ -16,10 +16,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages= {"com.revature.services.*"}) // For some reason, the project has broken into modules and those annotations are now necessary.
 @EnableJpaRepositories(basePackages= {"com.revature.data.*"})
 @EntityScan(basePackages={"com.revature.beans.*"})
-public class PitchPlusApplication {
+public class CubbyNowApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PitchPlusApplication.class, args);
+		SpringApplication.run(CubbyNowApplication.class, args);
 	}
 	@RequestMapping("/")
 	public String index() {
