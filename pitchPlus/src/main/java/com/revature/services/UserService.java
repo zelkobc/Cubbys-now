@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.revature.beans.Users;
+import com.revature.beans.User;
 import com.revature.data.UserDAO;
 
 @Service
@@ -19,17 +19,17 @@ public class UserService {
 	UserService(UserDAO u) {
 		uDao = u;	
 	}
-	public void addUser(Users u) {
-		Users user = uDao.findUserByName(u.getUsername());
+	public void addUser(User u) {
+		User user = uDao.findUserByName(u.getUsername());
 		if (user != null) { // catch an exception for this instead
 			return;
 		} else {
 			uDao.save(u);
 		}
 	}
-	public Users getUserById(int id) {
+	public User getUser(int id) {
 		System.out.println("get reached");
-		Users user = uDao.getOne(id);
+		User user = uDao.findById(id).get();
 		if (user != null) {
 			return user;
 		} else {
