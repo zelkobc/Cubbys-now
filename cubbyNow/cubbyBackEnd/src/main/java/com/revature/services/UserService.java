@@ -20,7 +20,7 @@ public class UserService {
 		uDao = u;	
 	}
 	public void addUser(User u) {
-		User user = uDao.findUserByName(u.getUsername());
+		User user = uDao.findUserByName(u.getName());
 		if (user != null) { // catch an exception for this instead
 			return;
 		} else {

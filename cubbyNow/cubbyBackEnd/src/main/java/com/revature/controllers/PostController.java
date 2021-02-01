@@ -48,6 +48,7 @@ public class PostController {
 	@PostMapping
 	public ResponseEntity<Integer> addPost(@RequestBody Post post)
 	{
+		System.out.println(post);
 		Integer newId = postServ.addPost(post);
 		if (newId != null)
 		{
@@ -63,10 +64,10 @@ public class PostController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<Void> deletePost(@RequestBody Post post)
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deletePost(@PathVariable Integer id)
 	{
-		postServ.deletePost(post);
+		postServ.deletePost(id);
 		return ResponseEntity.ok().build();
 	}
 }

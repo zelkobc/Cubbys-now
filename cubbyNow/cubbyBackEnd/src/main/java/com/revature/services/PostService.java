@@ -32,7 +32,7 @@ public class PostService {
 	{
 		if (!postDAO.existsById(post.getPostid()))
 		{
-			return postDAO.save(post).getPostid();		
+			return postDAO.save(post).getPostid();
 		}
 		return null;
 		
@@ -46,8 +46,9 @@ public class PostService {
 		}
 	}
 	
-	public void deletePost(Post post)
+	public void deletePost(Integer id)
 	{
+		Post post = postDAO.findById(id).get();
 		postDAO.delete(post);
 	}
 
