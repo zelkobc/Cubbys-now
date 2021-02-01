@@ -1,7 +1,6 @@
 package com.revature.beans;
 
 import javax.persistence.*;
-import org.springframework.stereotype.Component;
 
 
 @Entity
