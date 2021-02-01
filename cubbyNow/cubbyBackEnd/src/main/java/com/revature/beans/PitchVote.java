@@ -13,6 +13,7 @@ public class PitchVote {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int voteid;
 	@ManyToOne(targetEntity=Posts.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="pitch_id")
 	private int pitch_id;
 	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id")
