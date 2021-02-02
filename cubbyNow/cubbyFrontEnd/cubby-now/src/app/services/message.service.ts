@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UrlService } from '../services/url.service';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs'
-import { Message } from '../models/message'
+import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { Message } from '../models/message';
 
 @Injectable({
   providedIn: 'root'
