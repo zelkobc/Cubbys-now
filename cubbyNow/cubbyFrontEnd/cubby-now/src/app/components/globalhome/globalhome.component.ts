@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-globalhome',
@@ -8,14 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalhomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  url: string;
+
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  public addPost()
-  {
-
-  }
 
 }
