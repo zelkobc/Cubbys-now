@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 	
 	private final UserService userService;
-	
 	@Autowired 
 	public UserController(UserService userService) {
 		this.userService = userService;
@@ -35,7 +34,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping(path = "/all")
+	@GetMapping
 	public ResponseEntity<List<User>> getUsers(){
 		List<User> users = this.userService.getAllUsers();
 		
@@ -70,16 +69,17 @@ public class UserController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PutMapping(path = "/{id}")
-	public ResponseEntity<Void> updateUser(HttpSession session, @PathVariable("id") Integer id,
-			@RequestBody User user){
-		User loggedUser = (User) session.getAttribute("user");
-		if(loggedUser != null && loggedUser.getUserid().equals(id)) {
+	@PutMapping("/{id}")
+	public ResponseEntity<Void> updateuser(@PathVariable("id") Integer id, @RequestBody User user)
+	{
+		if(user.getUserid() == id) {
 			userService.updateUser(user);
 			return ResponseEntity.ok().build();
+		}else {
+			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
+	
 	
 //This method should only be used by the teacher if at all
 //	@PostMapping
