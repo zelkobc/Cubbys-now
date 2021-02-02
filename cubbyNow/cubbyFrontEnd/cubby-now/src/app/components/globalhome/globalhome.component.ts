@@ -12,34 +12,10 @@ export class GlobalhomeComponent implements OnInit {
 
   url: string;
 
-  constructor(private http: HttpClient, private urlServ: UrlService) {this.url = urlServ.getUrl() + "posts" }
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  addPost(post: Post)
-  {
-    return this.http.post(this.url,JSON.stringify(post));
-  }
-
-  getPostById(id: number)
-  {
-    return this.http.get(this.url + "/" + id);
-  }
-
-  getAllPosts()
-  {
-    return this.http.get(this.url + "/all");
-  }
-
-  updatePost(post: Post)
-  {
-    return this.http.put(this.url, post);
-  }
-
-  deletePostById(id: number)
-  {
-    return this.http.delete(this.url + "/" + id);
-  }
 
 }
