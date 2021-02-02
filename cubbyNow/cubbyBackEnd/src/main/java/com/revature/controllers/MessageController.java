@@ -2,6 +2,9 @@ package com.revature.controllers;
 
 import com.revature.services.*;
 import com.revature.beans.*;
+
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +26,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessageController {
 	
 	private final MessageService messageService;
+	private final UserService userService;
 	
 	@Autowired
-	public MessageController(MessageService messageService) {
+	public MessageController(MessageService messageService, UserService userService) {
 		this.messageService = messageService;
+		this.userService = userService;
 	}
 	@GetMapping(path = "/{messageId}")
 	public ResponseEntity<Messages> getMessageById(@PathVariable int messageId) {
 //		add @RequestBody User user and HttpSession session to args for basic auth
 //		User loggedUser = (User) session.getAttribute("user");
 		Messages message = this.messageService.getMessageById(messageId);
-//		if(loggedUser != null && (loggedUser.getUserid().equals(message.getWriterid())) || loggedUser != null && (loggedUser.getUserid().equals(message.getReceiverid()))) {
+//		if(loggedUser != null && (loggedUser.getUserid().equals(message.getWriterid())) || loggedUser != null && (loggedUser.getUserid().equals(message.getReceiverid()))) { check password and id for uniqueness; maybe just another ||
 		if(message != null) {
 			return ResponseEntity.ok(message);
 		} else {
@@ -43,6 +48,16 @@ public class MessageController {
 //		 return ResponseEntity.badRequest.build();
 //		}
 //	}
+	}
+	@GetMapping(path = "/user/{ReceiverId}")
+	public ResponseEntity<List<Messages>> getMessagesByReceiver(@PathVariable int ReceiverId) {
+		Integer usrId = this.userService.getUser(ReceiverId).getUserid();
+		if (usrId != null) {
+		List<Messages> messages = this.messageService.getAllMessagesByReceiverId(ReceiverId);
+		return ResponseEntity.ok(messages);
+		} else {
+		return ResponseEntity.badRequest().build(); 
+		}
 	}
 	@PostMapping
 	public ResponseEntity<Integer> addMessage(@RequestBody Messages message)
