@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "cubby-now"
+  "defaultProject": "cubby-now",
+  "cli": {
+    "analytics": "c2f046d1-7ce2-4869-b4ed-9b637356eac6"
+  }
 }
