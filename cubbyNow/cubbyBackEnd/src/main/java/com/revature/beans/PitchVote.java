@@ -19,7 +19,7 @@ public class PitchVote {
 	@JoinColumn(name="user_id")
 	private int user_id;
 	@Column(name="votevalue")
-	@Check(constraints = "votevalue <= 100")
+	@Check(constraints = "votevalue <= 10")
 	private int rating;
 
 	

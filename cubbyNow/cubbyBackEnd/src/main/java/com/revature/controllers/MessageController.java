@@ -2,6 +2,9 @@ package com.revature.controllers;
 
 import com.revature.services.*;
 import com.revature.beans.*;
+
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +36,7 @@ public class MessageController {
 //		add @RequestBody User user and HttpSession session to args for basic auth
 //		User loggedUser = (User) session.getAttribute("user");
 		Messages message = this.messageService.getMessageById(messageId);
-//		if(loggedUser != null && (loggedUser.getUserid().equals(message.getWriterid())) || loggedUser != null && (loggedUser.getUserid().equals(message.getReceiverid()))) {
+//		if(loggedUser != null && (loggedUser.getUserid().equals(message.getWriterid())) || loggedUser != null && (loggedUser.getUserid().equals(message.getReceiverid()))) { check password and id for uniqueness; maybe just another ||
 		if(message != null) {
 			return ResponseEntity.ok(message);
 		} else {
@@ -43,6 +46,11 @@ public class MessageController {
 //		 return ResponseEntity.badRequest.build();
 //		}
 //	}
+	}
+	@GetMapping(path = "/{ReceiverId]")
+	public ResponseEntity<List<Messages>> getMessagesByReceiver(HttpSession session, @PathVariable int ReceiverId, @RequestBody User user) {
+		return null;
+		
 	}
 	@PostMapping
 	public ResponseEntity<Integer> addMessage(@RequestBody Messages message)
