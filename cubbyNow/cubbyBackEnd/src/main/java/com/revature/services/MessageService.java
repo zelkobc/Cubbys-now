@@ -27,7 +27,6 @@ public class MessageService {
 	}
 	@EntityGraph(value="Messages.receiverid", type = EntityGraphType.FETCH)
 	public List<Messages> getAllMessagesByReceiverId(Integer receiverid) {
-		System.out.println("hi!");
 		return messageDAO.findByReceiverid(receiverid);
 	}
 	public Integer addMessages(Messages message) {
