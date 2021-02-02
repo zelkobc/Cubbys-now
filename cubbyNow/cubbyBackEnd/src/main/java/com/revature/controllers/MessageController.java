@@ -26,10 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessageController {
 	
 	private final MessageService messageService;
+	private final UserService userService;
 	
 	@Autowired
-	public MessageController(MessageService messageService) {
+	public MessageController(MessageService messageService, UserService userService) {
 		this.messageService = messageService;
+		this.userService = userService;
 	}
 	@GetMapping(path = "/{messageId}")
 	public ResponseEntity<Messages> getMessageById(@PathVariable int messageId) {
@@ -47,10 +49,15 @@ public class MessageController {
 //		}
 //	}
 	}
-	@GetMapping(path = "/{ReceiverId]")
-	public ResponseEntity<List<Messages>> getMessagesByReceiver(HttpSession session, @PathVariable int ReceiverId, @RequestBody User user) {
-		return null;
-		
+	@GetMapping(path = "/user/{ReceiverId}")
+	public ResponseEntity<List<Messages>> getMessagesByReceiver(@PathVariable int ReceiverId) {
+		Integer usrId = this.userService.getUser(ReceiverId).getUserid();
+		if (usrId != null) {
+		List<Messages> messages = this.messageService.getAllMessagesByReceiverId(ReceiverId);
+		return ResponseEntity.ok(messages);
+		} else {
+		return ResponseEntity.badRequest().build(); 
+		}
 	}
 	@PostMapping
 	public ResponseEntity<Integer> addMessage(@RequestBody Messages message)
