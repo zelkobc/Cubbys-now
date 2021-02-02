@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UrlService } from '../url.service';
+import { UrlService } from '../services/url.service';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs'
+import { Message } from '../models/message'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class MessageService {
     this.userMessagesUrl = this.urlService.getUrl() + 'messages/'
    }
    getMessages(id: Number): Observable<Message[]> {
-     return this.http.get(this.userMessagesUrl + id, {withCredentials:true}).pipe(
+     return this.http.get(this.userMessagesUrl + /user/id, {withCredentials:true}).pipe(
        map(resp => resp as Message[])
      );
    }
