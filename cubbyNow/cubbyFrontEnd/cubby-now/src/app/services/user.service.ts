@@ -14,10 +14,10 @@ export class UserService {
 
   private loggedUser: User;
   private usersUrl: string;
-  private formHeaders = new HttpHeaders({'Cookie':this.cookieService.get('JSESSIONID'),
-  'Content-Type': 'application/x-www-form-urlencoded'});
-  private regHeaders = new HttpHeaders({'Cookie':this.cookieService.get('JSESSIONID'), 
-  'Content-Type':'application/json'});
+  // private formHeaders = new HttpHeaders({'Cookie':this.cookieService.get('JSESSIONID'),
+  // 'Content-Type': 'application/x-www-form-urlencoded'});
+  // private regHeaders = new HttpHeaders({'Cookie':this.cookieService.get('JSESSIONID'), 
+  // 'Content-Type':'application/json'});
 
 
   constructor(private http: HttpClient, private urlService: UrlService, private cookieService: CookieService) {
@@ -28,7 +28,7 @@ export class UserService {
     if (username && password) {
       const queryParams = `?user=${username}&pass=${password}`;
       return this.http.put(this.usersUrl + queryParams,
-        {headers: this.formHeaders, withCredentials:true}).pipe(
+        {headers: this.urlService.formHeaders, withCredentials:true}).pipe(
           map(resp => resp as User)
       );
     } else {
@@ -40,16 +40,34 @@ export class UserService {
   }
 
   logoutUser(): Observable<object> {
-    return this.http.delete(this.usersUrl, {headers:this.regHeaders, withCredentials:true}).pipe();
+    return this.http.delete(this.usersUrl, {headers:this.urlService.regHeaders, withCredentials:true}).pipe();
   }
 
   updateUser(updatedUser: User): Observable<object> {
     this.loggedUser = updatedUser;
     return this.http.put(this.usersUrl + this.loggedUser.id, updatedUser, 
-      {headers:this.regHeaders, withCredentials:true}).pipe();
+      {headers:this.urlService.regHeaders, withCredentials:true}).pipe();
   }
 
   getLoggedUser(): User {
     return this.loggedUser;
   }
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get(this.usersUrl + id, {headers:this.urlService.regHeaders, withCredentials:true}).pipe(
+      map((resp) => resp as User)
+    );
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get(this.usersUrl, {withCredentials:true}).pipe(
+      map(resp => resp as User[])
+    );
+  }
+
+  getUserbyUsername(name: string): Observable<User> {
+    return this.http.get(this.usersUrl + '/username/' + name, { withCredentials: true })
+    .pipe(map((resp) => resp as User));
+  }
+
 }

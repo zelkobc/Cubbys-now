@@ -25,8 +25,17 @@ public class UserController {
 	}
 	@GetMapping(path ="/{userId}")
 	public ResponseEntity<User> getUserById(@PathVariable int userId){
-		System.out.println(userId + "line!");
 		User u = this.userService.getUser(userId);
+		if(u != null) {
+			return ResponseEntity.ok(u);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@GetMapping(path ="/{username}")
+	public ResponseEntity<User> getUserByUsername(@PathVariable int username){
+		User u = this.userService.getUser(username);
 		if(u != null) {
 			return ResponseEntity.ok(u);
 		} else {
