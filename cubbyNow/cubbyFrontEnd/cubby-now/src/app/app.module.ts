@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { GlobalhomeComponent } from './components/globalhome/globalhome.component';
 import { LoginbarComponent } from './components/loginbar/loginbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './models/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GlobalhomeComponent,
-    LoginbarComponent
+    LoginbarComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
