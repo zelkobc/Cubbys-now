@@ -1,5 +1,7 @@
 package com.revature.beans;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,13 +19,20 @@ public class User {
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="role_id")	
 	private Role role;
+	
+	@ManyToMany
+	@JoinTable(name = "groups_users", 
+    joinColumns = { @JoinColumn(name = "user_id") }, 
+    inverseJoinColumns = { @JoinColumn(name = "group_id") })
+	private Set<Group> groups;
 
 	
 
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", name=" + name + ", password=" + password + ", role=" + role + "]";
+		return "User [userid=" + userid + ", name=" + name + ", password=" + password + ", role=" + role + ", groups="
+				+ groups + "]";
 	}
 
 
@@ -33,6 +42,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
@@ -52,6 +62,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (groups == null) {
+			if (other.groups != null)
+				return false;
+		} else if (!groups.equals(other.groups))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -73,6 +88,20 @@ public class User {
 		} else if (!userid.equals(other.userid))
 			return false;
 		return true;
+	}
+
+
+
+
+	public Set<Group> getGroups() {
+		return groups;
+	}
+
+
+
+
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
 	}
 
 
