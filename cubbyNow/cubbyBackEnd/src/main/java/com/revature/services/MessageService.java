@@ -12,7 +12,7 @@ import com.revature.data.MessageDAO;
 
 @Service
 public class MessageService {
-	private MessageDAO messageDAO;
+	private final MessageDAO messageDAO;
 	
 	@Autowired
 	public MessageService(MessageDAO messageDAO){
