@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Component
 @RequestMapping(path = "/users")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 public class UserController {
 	
 	private final UserService userService;
@@ -67,7 +68,9 @@ public class UserController {
 	@PutMapping(path = "/login")
 	public ResponseEntity<User> logIn(@RequestParam("user") String username,
 			@RequestParam("pass") String password){
+		System.out.println("The Username Recieved was:" + username + " and the password was: " + password);
 		User User = userService.getUserByUsername(username);
+		System.out.println("THe retrieved user: "+User.getName());
 		if (User != null) {
 			if (User.getPassword().equals(password)) {
 				return ResponseEntity.ok(User);

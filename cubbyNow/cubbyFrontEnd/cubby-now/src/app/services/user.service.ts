@@ -21,7 +21,7 @@ export class UserService {
   loginUser(username: string, password: string): Observable<User> {
     if (username && password) {
       const queryParams = `?user=${username}&pass=${password}`;
-      return this.http.put(this.usersUrl + queryParams,
+      return this.http.put(this.usersUrl +'/login' + queryParams,
         {headers: this.urlService.formHeaders, withCredentials:true}).pipe(
           map(resp => resp as User)
       );
