@@ -33,9 +33,9 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping(path ="/{username}")
-	public ResponseEntity<User> getUserByUsername(@PathVariable int username){
-		User u = this.userService.getUser(username);
+	@GetMapping(path ="username/{username}")
+	public ResponseEntity<User> getUserByUsername(@PathVariable String username){
+		User u = this.userService.getUserByUsername(username);
 		if(u != null) {
 			return ResponseEntity.ok(u);
 		} else {
@@ -64,7 +64,7 @@ public class UserController {
 //		return ResponseEntity.ok(supposedLoggedInUser);
 //	}
 	
-	@PutMapping
+	@PutMapping(path = "/login")
 	public ResponseEntity<User> logIn(@RequestParam("user") String username,
 			@RequestParam("pass") String password){
 		User User = userService.getUserByUsername(username);
@@ -78,14 +78,12 @@ public class UserController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Void> updateuser(@PathVariable("id") Integer id, @RequestBody User user)
+	@PutMapping()
+	public ResponseEntity<Void> updateuser(@RequestBody User user)
 	{
-		System.out.println(id + " " + user.getUserid());
-		if(user.getUserid() == id) {
-			userService.updateUser(user);
+		try {userService.updateUser(user);
 			return ResponseEntity.ok().build();
-		}else {
+		}catch (Exception e){
 			return ResponseEntity.badRequest().build();
 		}
 	}
