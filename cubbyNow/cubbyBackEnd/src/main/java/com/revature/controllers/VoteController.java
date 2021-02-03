@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.Vote;
 import com.revature.services.VoteService;
 import com.revature.beans.Post;
+import com.revature.beans.User;
 import com.revature.services.PostService;
 
 @RestController
@@ -28,12 +29,40 @@ public class VoteController {
 		this.voteServ = voteServ;
 		this.postServ = postServ;
 	}
-//	@GetMapping("/{postid}")
-//	public ResponseEntity<Vote> getVotesByPost(@PathVariable Integer postid) {
-//		Post post = postServ.getPostById(postid);
-//		if (post != null) {
-//		}
-//	}
-	
-
+	@GetMapping("/{postid}")
+	public ResponseEntity<List<Vote>> getVotesByPost(@PathVariable Integer postid) {
+		Post post = postServ.getPostById(postid);
+		if (post != null) {
+			List<Vote> votes = this.voteServ.getAllVotesByPost(postid);
+			if (votes != null) {
+				return ResponseEntity.ok(votes);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+		return ResponseEntity.badRequest().build();
+		}
+	}
+	@PostMapping
+	public ResponseEntity<Integer> addVote(@RequestBody Vote vote) {
+		Integer newId = this.voteServ.addVote(vote);
+		if (newId != null) {
+			return ResponseEntity.ok(vote.getVoteid());
+		} return ResponseEntity.badRequest().build();
+	}
+	@PutMapping
+	public void updateVote(@RequestBody Vote vote) {
+		Integer id = vote.getVoteid();
+		if (this.voteServ.getVoteById(id) != null) {
+			this.voteServ.updateVote(vote);
+			return;
+		}
+		return;
+	}
+	@GetMapping("/check/{postid}")
+	public ResponseEntity<Boolean> hasVoted(@RequestBody User loggedUser, @PathVariable Integer postid) {
+		if (this.voteServ.hasVoted(loggedUser, postid) == true) {
+			return ResponseEntity.ok(true);
+		}	return ResponseEntity.ok(false);
+	}
 }

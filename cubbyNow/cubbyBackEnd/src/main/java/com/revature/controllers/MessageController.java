@@ -42,20 +42,19 @@ public class MessageController {
 //		if(loggedUser != null && (loggedUser.getUserid().equals(message.getWriterid())) || loggedUser != null && (loggedUser.getUserid().equals(message.getReceiverid()))) { check password and id for uniqueness; maybe just another ||
 		if(message != null) {
 			return ResponseEntity.ok(message);
-		} else {
+		} 
 			return ResponseEntity.notFound().build();
-		}
-//		 else {
-//		 return ResponseEntity.badRequest.build();
-//		}
-//	}
 	}
 	@GetMapping(path = "/user/{ReceiverId}")
 	public ResponseEntity<List<Messages>> getMessagesByReceiver(@PathVariable int ReceiverId) {
 		Integer usrId = this.userService.getUser(ReceiverId).getUserid();
 		if (usrId != null) {
 		List<Messages> messages = this.messageService.getAllMessagesByReceiverId(ReceiverId);
+		if (messages != null) {
 		return ResponseEntity.ok(messages);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 		} else {
 		return ResponseEntity.badRequest().build(); 
 		}
@@ -75,9 +74,9 @@ public class MessageController {
 		Integer Id = message.getId();
 		if (this.messageService.getMessageById(Id) != null) {
 			this.messageService.updateMessage(message);
-		} else {
-		return;
+			return;
 		}
+		return;
 	}
 	@DeleteMapping("/{id}") //100 MILLION PERCENT REQUIRES AUTHORIZATION AT SOME POINT PLS PLS PLS 
 	public ResponseEntity<Void> deleteMessage(@PathVariable Integer id)
