@@ -31,7 +31,7 @@ public class VoteService {
 		if(!voteDAO.existsById(vote.getVoteid()) && postDAO.existsById(vote.getPostid())) {
 			return voteDAO.save(vote).getVoteid();
 		}
-		return null;
+		return 1;
 	}
 	public void updateVote(Vote vote)
 	{
