@@ -81,6 +81,7 @@ public class UserController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> updateuser(@PathVariable("id") Integer id, @RequestBody User user)
 	{
+		System.out.println(id + " " + user.getUserid());
 		if(user.getUserid() == id) {
 			userService.updateUser(user);
 			return ResponseEntity.ok().build();
