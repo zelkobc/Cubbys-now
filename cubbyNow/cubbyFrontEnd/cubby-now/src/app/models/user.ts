@@ -1,3 +1,4 @@
+import { Group } from "./group";
 import { Role } from "./role";
 
 export class User {
@@ -5,4 +6,5 @@ export class User {
     username: string;
     password: string;
     role: Role;
+    groups: Group[];
 }
