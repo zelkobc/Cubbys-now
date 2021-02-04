@@ -3,6 +3,7 @@ import { User } from '../../models/user';
 import { Message } from '../../models/message'
 import { UrlService } from '../../services/url.service';
 import { MessageService } from '../../services/message.service'
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-messaging',
@@ -14,11 +15,12 @@ message: string;
 target: number;
 newMessage: Message;
 Messages: Message[];
+Users: User[];
 private hasFlag: number;
 private authFlag: number;
 @Input() public loggedUser: User;
 
-  constructor(private messageService:MessageService) {
+  constructor(private messageService:MessageService, private userService:UserService) {
    }
 
   ngOnInit(): void {
@@ -37,6 +39,11 @@ private authFlag: number;
     } else {
       this.authFlag = 0;
     }
+    this.userService.getAllUsers().subscribe(
+      resp=> {
+        this.Users = resp;
+      }
+    )
   }
 onSubmit() {
   this.newMessage = new Message;

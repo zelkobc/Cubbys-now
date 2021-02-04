@@ -16,7 +16,7 @@ import { RightNavbarComponent } from './components/right-navbar/right-navbar.com
     AppComponent,
     GlobalhomeComponent,
     LoginbarComponent,
-    MessagingComponent
+    MessagingComponent,
     LeftNavbarComponent,
     RightNavbarComponent,
   ],
