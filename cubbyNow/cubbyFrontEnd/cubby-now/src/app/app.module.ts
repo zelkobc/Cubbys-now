@@ -7,13 +7,15 @@ import { GlobalhomeComponent } from './components/globalhome/globalhome.componen
 import { LoginbarComponent } from './components/loginbar/loginbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './models/user/user.component';
+import { MessagingComponent } from './components/messaging/messaging.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GlobalhomeComponent,
     LoginbarComponent,
-    UserComponent
+    UserComponent,
+    MessagingComponent
   ],
   imports: [
     BrowserModule,
