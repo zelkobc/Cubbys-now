@@ -8,6 +8,8 @@ import { LoginbarComponent } from './components/loginbar/loginbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagingComponent } from './components/messaging/messaging.component';
 import { FormsModule } from '@angular/forms';
+import { LeftNavbarComponent } from './components/left-navbar/left-navbar.component';
+import { RightNavbarComponent } from './components/right-navbar/right-navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     GlobalhomeComponent,
     LoginbarComponent,
     MessagingComponent
+    LeftNavbarComponent,
+    RightNavbarComponent,
   ],
   imports: [
     BrowserModule,
