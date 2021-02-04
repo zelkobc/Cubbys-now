@@ -1,7 +1,9 @@
+import { User } from "./user";
+
 export class Message {
     id: Number;
     content: String;
-    writerid: Number;
-    receiverid: Number;
+    writer: User;
+    receiver: User;
     message_date: Date;
 }

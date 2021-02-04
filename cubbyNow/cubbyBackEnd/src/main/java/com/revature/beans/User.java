@@ -4,7 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name="users")
@@ -17,7 +18,7 @@ public class User {
 	@Column(name="username")
 	private String name;
 	@Column(name="passwrd")
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password; 
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="role_id")	

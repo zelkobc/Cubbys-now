@@ -14,6 +14,8 @@ message: string;
 target: number;
 newMessage: Message;
 Messages: Message[];
+private hasFlag: number;
+private authFlag: number;
 @Input() public loggedUser: User;
 
   constructor(private messageService:MessageService) {
@@ -26,16 +28,21 @@ Messages: Message[];
       }
     )
     if(this.Messages.length == 0) {
-      var hasFlag = 0;
+      this.hasFlag = 0;
     } else {
-      var hasFlag = 1;
+      this.hasFlag = 1;
+    }
+    if(this.loggedUser.role.id > 1) {
+      this.authFlag = 1;
+    } else {
+      this.authFlag = 0;
     }
   }
 onSubmit() {
   this.newMessage = new Message;
   this.newMessage.content = this.message;
-  this.newMessage.writerid = this.loggedUser.id;
-  this.newMessage.receiverid = this.target;
+  this.newMessage.writer.id = this.loggedUser.id;
+  this.newMessage.receiver.id = this.target;
   this.messageService.writeMessage(this.newMessage).subscribe();
 }
 }
