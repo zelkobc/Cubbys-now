@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Message } from '../../models/message'
+import { CommonModule } from '@angular/common';  
+import { BrowserModule } from '@angular/platform-browser';
 import { UrlService } from '../../services/url.service';
 import { MessageService } from '../../services/message.service'
 import { UserService } from '../../services/user.service';
