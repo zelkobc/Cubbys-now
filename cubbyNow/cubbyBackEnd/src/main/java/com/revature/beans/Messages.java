@@ -11,15 +11,17 @@ public class Messages {
 	private Integer id;
 	@Column(name="mcontent")
 	private String content;
-	@Column(name="writer_id")
-	private Integer writerid;
-	@Column(name="receiver_id")
-	private Integer receiverid;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="writer_id")
+	private User writer;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="receiver_id")
+	private User receiver;
 	@Column(name="message_date")
 	private LocalDateTime message_date;
 	@Override
 	public String toString() {
-		return "Messages [id=" + id + ", content=" + content + ", writerid=" + writerid + ", receiverid=" + receiverid
+		return "Messages [id=" + id + ", content=" + content + ", writer=" + writer + ", receiver=" + receiver
 				+ ", message_date=" + message_date + "]";
 	}
 	@Override
@@ -29,8 +31,8 @@ public class Messages {
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((message_date == null) ? 0 : message_date.hashCode());
-		result = prime * result + ((receiverid == null) ? 0 : receiverid.hashCode());
-		result = prime * result + ((writerid == null) ? 0 : writerid.hashCode());
+		result = prime * result + ((receiver == null) ? 0 : receiver.hashCode());
+		result = prime * result + ((writer == null) ? 0 : writer.hashCode());
 		return result;
 	}
 	@Override
@@ -57,15 +59,15 @@ public class Messages {
 				return false;
 		} else if (!message_date.equals(other.message_date))
 			return false;
-		if (receiverid == null) {
-			if (other.receiverid != null)
+		if (receiver == null) {
+			if (other.receiver != null)
 				return false;
-		} else if (!receiverid.equals(other.receiverid))
+		} else if (!receiver.equals(other.receiver))
 			return false;
-		if (writerid == null) {
-			if (other.writerid != null)
+		if (writer == null) {
+			if (other.writer != null)
 				return false;
-		} else if (!writerid.equals(other.writerid))
+		} else if (!writer.equals(other.writer))
 			return false;
 		return true;
 	}
@@ -81,17 +83,17 @@ public class Messages {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Integer getWriterid() {
-		return writerid;
+	public User getWriter() {
+		return writer;
 	}
-	public void setWriterid(Integer writerid) {
-		this.writerid = writerid;
+	public void setWriter(User writer) {
+		this.writer = writer;
 	}
-	public Integer getReceiverid() {
-		return receiverid;
+	public User getReceiver() {
+		return receiver;
 	}
-	public void setReceiverid(Integer receiverid) {
-		this.receiverid = receiverid;
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 	public LocalDateTime getMessage_date() {
 		return message_date;
@@ -103,8 +105,8 @@ public class Messages {
 	public Messages() {
 		id = 0;
 		message_date = LocalDateTime.now();
-		receiverid = -1;
-		writerid = -1;
+		receiver = new User();
+		writer = new User();
 		content = "";
 	}
 }

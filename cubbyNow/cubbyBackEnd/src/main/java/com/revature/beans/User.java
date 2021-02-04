@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -15,6 +17,7 @@ public class User {
 	@Column(name="username")
 	private String name;
 	@Column(name="passwrd")
+	@JsonIgnore
 	private String password; 
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="role_id")	

@@ -11,7 +11,7 @@ import { Message } from '../models/message';
 })
 export class MessageService {
   userMessagesUrl: string;
-  private formHeaders = this.urlService.formHeaders;
+
   private regHeaders = this.urlService.regHeaders;
 
   constructor(private http: HttpClient, private urlService: UrlService, private cookieService: CookieService) {
