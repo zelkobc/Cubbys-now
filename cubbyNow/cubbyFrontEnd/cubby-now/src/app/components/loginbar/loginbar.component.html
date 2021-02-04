@@ -1,1 +1,57 @@
-<p>loginbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active"
+      ><span>Cubbies</span></a
+    >
+    <!-- This button is supposed to collapse the navbar
+        <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    > 
+      <span class="navbar-toggler-icon"></span>
+    </button>
+-->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul
+        *ngIf="loggedUser; else authNav"
+        class="navbar-nav mr-auto mt-2 mt-lg-0"
+      >
+
+  <p> Welcome {{ loggedUser.username }}</p>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/classroom" routerLinkActive="active">
+            <span>Classroom</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/message" routerLinkActive="active">
+            <span>MESSAGE</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" (click)="logOut()" routerLinkActive="active">
+            <span>LOG OUT</span>
+          </a>
+        </li>
+      </ul>
+  
+      <ng-template #authNav>
+        
+        <form>
+            <label for="user">Username: </label>
+            <input id="user" name="user" type="text" [(ngModel)]="user" />
+            <label for="pass"> Password: </label>
+            <input id="pass" name="pass" type="password" [(ngModel)]="pass" />
+            <button type="button" id="loginBtn" (click)="logIn()">Log In</button>
+        </form>
+         
+      </ng-template>
+  
+    </div>
+  </nav>

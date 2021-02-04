@@ -6,21 +6,21 @@ import { AppComponent } from './app.component';
 import { GlobalhomeComponent } from './components/globalhome/globalhome.component';
 import { LoginbarComponent } from './components/loginbar/loginbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserComponent } from './models/user/user.component';
 import { MessagingComponent } from './components/messaging/messaging.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     GlobalhomeComponent,
     LoginbarComponent,
-    UserComponent,
     MessagingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

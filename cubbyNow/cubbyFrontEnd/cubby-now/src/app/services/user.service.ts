@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
-// import { User } from './models/person';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
@@ -14,11 +13,6 @@ export class UserService {
 
   private loggedUser: User;
   private usersUrl: string;
-  // private formHeaders = new HttpHeaders({'Cookie':this.cookieService.get('JSESSIONID'),
-  // 'Content-Type': 'application/x-www-form-urlencoded'});
-  // private regHeaders = new HttpHeaders({'Cookie':this.cookieService.get('JSESSIONID'), 
-  // 'Content-Type':'application/json'});
-
 
   constructor(private http: HttpClient, private urlService: UrlService, private cookieService: CookieService) {
     this.usersUrl = this.urlService.getUrl() + 'users';
@@ -27,7 +21,7 @@ export class UserService {
   loginUser(username: string, password: string): Observable<User> {
     if (username && password) {
       const queryParams = `?user=${username}&pass=${password}`;
-      return this.http.put(this.usersUrl + queryParams,
+      return this.http.put(this.usersUrl +'/login' + queryParams,
         {headers: this.urlService.formHeaders, withCredentials:true}).pipe(
           map(resp => resp as User)
       );
