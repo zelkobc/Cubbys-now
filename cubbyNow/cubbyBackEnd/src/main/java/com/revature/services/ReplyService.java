@@ -35,11 +35,11 @@ public class ReplyService{
   }
 
   public List<Reply> getRepliesByPost(Integer id){
-    Post post = postServ.getPostById(id);
-    List<Reply> allReplies = replyDAO.findAll();
-    List<Reply> postReplies = new LinkedList<>();
+    //Post post = postServ.getPostById(id);
+    List<Reply> allReplies = getAllReplies();
+    List<Reply> postReplies = new LinkedList<Reply>();
     for(Reply r : allReplies){
-      if(r.getPost() == post){
+      if(r.getPost().getPostid() == id){
         postReplies.add(r);
       }
     }

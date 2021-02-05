@@ -7,12 +7,14 @@ import { GlobalhomeComponent } from './components/globalhome/globalhome.componen
 import { LoginbarComponent } from './components/loginbar/loginbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PostPageComponent } from './post-page/post-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GlobalhomeComponent,
     LoginbarComponent,
+    PostPageComponent,
   ],
   imports: [
     BrowserModule,

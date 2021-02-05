@@ -24,12 +24,19 @@ public class ReplyController{
   // Create
   @PostMapping
   public ResponseEntity<Integer> addReply(@RequestBody Reply reply){
-    if(replyServ.getReplyById(reply.getId()) == null){
-      return ResponseEntity.ok(replyServ.addReply(reply));
-    }
-    else{
-      return ResponseEntity.badRequest().build();
-    }
+      Reply check = null; 
+	    try{
+	        check = replyServ.getReplyById(reply.getId());
+	        System.out.println(check);
+	    }
+	    catch(Exception e){
+	    }
+	    if(check == null){
+	        return ResponseEntity.ok(replyServ.addReply(reply));
+	    } 
+	    else{
+	        return ResponseEntity.badRequest().build();
+	    }
   }
 
   // Read
@@ -52,6 +59,7 @@ public class ReplyController{
   @PutMapping
   public ResponseEntity<Void> updateReply(@RequestBody Reply reply){
     if(replyServ.getReplyById(reply.getId()) != null){
+      replyServ.updateReply(reply);
       return ResponseEntity.ok().build();
     }
     else{
@@ -60,8 +68,9 @@ public class ReplyController{
   }
 
   // Delete
-  @DeleteMapping(path = "id")
+  @DeleteMapping(path = "/{id}")
   public ResponseEntity<Void> deleteReply(@PathVariable("id") Integer id){
+    replyServ.deleteReply(id);
     return ResponseEntity.ok().build();
   }
 
