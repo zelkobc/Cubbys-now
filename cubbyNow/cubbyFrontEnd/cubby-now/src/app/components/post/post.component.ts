@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Post} from 'src/app/models/post';
+import {Reply} from 'src/app/models/reply';
 import {User} from 'src/app/models/user';
 import {PostService} from 'src/app/services/post.service';
+import {ReplyService} from 'src/app/services/reply.service';
 import {UserService} from 'src/app/services/user.service';
 
 @Component({
@@ -13,23 +15,21 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
   author: User;
   loggedUser: User;
-  commentArray: Comment[];
+  replyArray: Reply[] = [];
 
   
-  constructor(private postServ: PostService, private userServ: UserService) { }
+  constructor(private postServ: PostService, private userServ: UserService, private replyServ: ReplyService) { }
 
   ngOnInit(): void {
-    this.userServ.getUserById(this.post.authorid).subscribe(
-      resp => {
-        this.author = resp;
-      }
-    );
+    this.refresh();
   }
 
-  commentButton(newComment: string){
+  replyButton(newReply: string){
+    this.refresh();
   }
 
-  editButton(newContent: string){
+  editButton(newMessage: string){
+    this.refresh();
   }
 
   refresh(){
@@ -39,5 +39,16 @@ export class PostComponent implements OnInit {
       }
     );
     
+    this.userServ.getUserById(this.post.authorid).subscribe(
+      resp => {
+        this.author = resp;
+      }
+    );
+ 
+    this.replyServ.getRepliesByPost(this.post.postid).subscribe(
+      resp => {
+        this.replyArray = resp;
+      }
+    )
   }
 }
