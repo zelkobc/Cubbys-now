@@ -18,7 +18,7 @@ export class MessageService {
     this.userMessagesUrl = this.urlService.getUrl() + 'messages/'
    }
    getMessages(id: Number): Observable<Message[]> {
-     return this.http.get(this.userMessagesUrl + '/user/id', {withCredentials:true}).pipe(
+     return this.http.get(this.userMessagesUrl + 'user/' + id, {withCredentials:true}).pipe(
        map(resp => resp as Message[])
      );
    }

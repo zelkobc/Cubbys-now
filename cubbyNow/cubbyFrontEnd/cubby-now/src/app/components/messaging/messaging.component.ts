@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { User } from '../../models/user';
 import { Message } from '../../models/message'
 import { CommonModule } from '@angular/common';  
@@ -18,19 +18,21 @@ target: number;
 newMessage: Message;
 Messages: Message[];
 Users: User[];
-private hasFlag: number;
-private authFlag: number;
-@Input() public loggedUser: User;
+hasFlag: number;
+authFlag: number;
+@Input() loggedUser: User;
 
   constructor(private messageService:MessageService, private userService:UserService) {
    }
 
   ngOnInit(): void {
+    console.log(this.loggedUser)
     this.messageService.getMessages(this.loggedUser.id).subscribe(
       resp=> {
         this.Messages = resp;
       }
     )
+    
     if(this.Messages.length == 0) {
       this.hasFlag = 0;
     } else {
@@ -46,6 +48,7 @@ private authFlag: number;
         this.Users = resp;
       }
     )
+    console.log(this.hasFlag)
   }
 onSubmit() {
   this.newMessage = new Message;

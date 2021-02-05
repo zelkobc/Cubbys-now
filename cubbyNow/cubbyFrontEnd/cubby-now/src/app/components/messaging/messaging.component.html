@@ -1,4 +1,4 @@
-<div *ng-if="hasFlag">
+<div *ngIf="hasFlag">
     <h3>Messages</h3>
     <table>
         <tr>
@@ -7,7 +7,7 @@
             <th>Sender</th>
             <th>Message</th>
         </tr>
-        <tr *ngFor="Let Message of Messages">
+        <tr *ngFor="let Message of Messages">
             <td>{{ Message.message_id | json}}</td>
             <td>{{( Message.message_date.month | json).replace("\"", "").replace("\"", "") | titlecase}} {{Message.message_date.dayOfMonth | json}}, {{Message.message_date.year | json}}</td>
             <td>{{ Message.writer.name | json}}</td>
@@ -15,7 +15,7 @@
         </tr>
     </table>
 </div>
-<div *ng-if="authFlag">
+<div *ngIf="authFlag">
     <h2>Write a message!</h2>
   <form>
       <div class="field">
@@ -27,7 +27,7 @@
   </form>
   <button type="submit" class="button is-danger is-large" (click)=onSubmit()>Submit</button>
 </div>
-<div *ng-if="authFlag">
+<div *ngIf="authFlag">
     <h2>
         <table>
             <tr>
