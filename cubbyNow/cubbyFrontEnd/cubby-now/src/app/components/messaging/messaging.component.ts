@@ -20,41 +20,30 @@ Messages: Message[];
 Users: User[];
 hasFlag: number;
 authFlag: number;
+messageString: string;
 @Input() loggedUser: User = window.sessionStorage.user;
 
   constructor(private messageService:MessageService, private userService:UserService) {
    }
 
   ngOnInit(): void {
-    console.log(this.loggedUser)
-    this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
-      resp=> {
-        this.Messages = resp;
-      }
-    )
-    
-    if(this.Messages.length == 0) {
-      this.hasFlag = 0;
-    } else {
-      this.hasFlag = 1;
-    }
-    if(this.loggedUser.role.id > 1) {
-      this.authFlag = 1;
-    } else {
-      this.authFlag = 0;
-    }
-    this.userService.getAllUsers().subscribe(
-      resp=> {
-        this.Users = resp;
-      }
-    )
-    console.log(this.hasFlag)
+    this.getUsers();
   }
 onSubmit() {
   this.newMessage = new Message;
   this.newMessage.content = this.message;
-  this.newMessage.writer.id = this.loggedUser.id;
+  this.newMessage.writer = JSON.parse(window.sessionStorage.user);
+  this.newMessage.receiver = new User;
   this.newMessage.receiver.id = this.target;
   this.messageService.writeMessage(this.newMessage).subscribe();
+  console.log(this.newMessage);
+}
+getUsers() {
+  this.userService.getAllUsers().subscribe(
+  resp=> {
+    this.Users = resp;
+    console.log(this.Users)
+  }
+  );
 }
 }

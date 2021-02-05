@@ -1,0 +1,17 @@
+<div *ngIf="Messages">
+    <h3>Messages</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Date sent</th>
+            <th>Sender</th>
+            <th>Message</th>
+        </tr>
+        <tr *ngFor="let Message of Messages">
+            <td>{{ Message.writer.id | json}}</td>
+            <td>{{( Message.message_date | json).replace("\"", "").replace("\"", "") | titlecase}}</td>
+            <td>{{ Message.writer.name | json}}</td>
+            <td>{{ Message.content | json}}</td>
+        </tr>
+    </table>
+</div>

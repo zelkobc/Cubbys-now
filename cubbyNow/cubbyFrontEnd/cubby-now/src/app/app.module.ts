@@ -10,7 +10,8 @@ import { MessagingComponent } from './components/messaging/messaging.component';
 import { FormsModule } from '@angular/forms';
 import { LeftNavbarComponent } from './components/left-navbar/left-navbar.component';
 import { RightNavbarComponent } from './components/right-navbar/right-navbar.component';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
+import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';  
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     MessagingComponent,
     LeftNavbarComponent,
     RightNavbarComponent,
+    ViewmessagesComponent,
   ],
   imports: [
     CommonModule,
