@@ -26,7 +26,10 @@ export class LoginbarComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    let alreadyLogged: User = JSON.parse(window.sessionStorage.user);
+    let alreadyLogged = window.sessionStorage.user;
+    if(alreadyLogged){
+      alreadyLogged = JSON.parse(alreadyLogged);
+    }
     if (alreadyLogged) {
       this.user = alreadyLogged.username;
       this.pass = alreadyLogged.password;

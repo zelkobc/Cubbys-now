@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { LeftNavbarComponent } from './components/left-navbar/left-navbar.component';
 import { RightNavbarComponent } from './components/right-navbar/right-navbar.component';
 import { ViewGroupsComponent } from './components/view-groups/view-groups.component';
+import {PostPageComponent} from './components/post-page/post-page.component';
+import {PostComponent} from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ViewGroupsComponent } from './components/view-groups/view-groups.compon
     LeftNavbarComponent,
     RightNavbarComponent,
     ViewGroupsComponent,
+    PostPageComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

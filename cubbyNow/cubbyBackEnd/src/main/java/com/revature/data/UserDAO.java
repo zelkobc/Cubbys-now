@@ -7,5 +7,5 @@ import com.revature.beans.User;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Integer> {
-	public User findUserByName(String username);
+	public User findUserByUsername(String username);
 }

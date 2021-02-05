@@ -7,4 +7,12 @@ export class User {
     password: string;
     role: Role;
     groups: Group[];
+
+    constructor(){
+      this.id = -1;
+      this.username = "";
+      this.password = "";
+      this.role = new Role();
+      this.groups = [];
+    }
 }

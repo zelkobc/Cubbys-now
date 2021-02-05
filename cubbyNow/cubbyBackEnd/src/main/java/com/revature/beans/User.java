@@ -13,7 +13,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer userid;
 	@Column(name="username")
-	private String name;
+	private String username;
 	@Column(name="passwrd")
 	private String password; 
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
@@ -31,7 +31,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", name=" + name + ", password=" + password + ", role=" + role + ", groups="
+		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", role=" + role + ", groups="
 				+ groups + "]";
 	}
 
@@ -43,7 +43,7 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((userid == null) ? 0 : userid.hashCode());
@@ -67,10 +67,10 @@ public class User {
 				return false;
 		} else if (!groups.equals(other.groups))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!username.equals(other.username))
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -121,15 +121,15 @@ public class User {
 
 
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
 
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
@@ -165,7 +165,7 @@ public class User {
 
 public User() {
 		userid = 0;
-		name = "";
+		username = "";
 		password = "";
 		role = new Role() ;
 	}

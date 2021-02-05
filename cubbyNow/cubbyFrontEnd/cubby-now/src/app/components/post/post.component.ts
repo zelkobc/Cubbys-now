@@ -12,15 +12,15 @@ import {UserService} from 'src/app/services/user.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  @Input() post: Post;
+  @Input() inputPost: Post;
   author: User;
   loggedUser: User;
   replyArray: Reply[] = [];
-
   
   constructor(private postServ: PostService, private userServ: UserService, private replyServ: ReplyService) { }
 
   ngOnInit(): void {
+    console.log("post: " + this.inputPost.content);
     this.refresh();
   }
 
@@ -33,21 +33,23 @@ export class PostComponent implements OnInit {
   }
 
   refresh(){
-    this.postServ.getPostById(this.post.postid).subscribe(
+    this.postServ.getPostById(this.inputPost.postid).subscribe(
       resp => {
-        this.post = resp;
+        this.inputPost = resp as Post;
       }
     );
     
-    this.userServ.getUserById(this.post.authorid).subscribe(
+    this.userServ.getUserById(this.inputPost.authorid).subscribe(
       resp => {
-        this.author = resp;
+        console.log(resp as User);
+        this.author = resp as User;
+        console.log(this.author.username);
       }
     );
  
-    this.replyServ.getRepliesByPost(this.post.postid).subscribe(
+    this.replyServ.getRepliesByPost(this.inputPost.postid).subscribe(
       resp => {
-        this.replyArray = resp;
+        this.replyArray = resp as Reply[];
       }
     )
   }
