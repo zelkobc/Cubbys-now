@@ -48,7 +48,7 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User> {
-    return this.http.get(this.usersUrl + id, {headers:this.urlService.regHeaders, withCredentials:true}).pipe(
+    return this.http.get(this.usersUrl + "/" +  id, {headers:this.urlService.regHeaders, withCredentials:true}).pipe(
       map((resp) => resp as User)
     );
   }

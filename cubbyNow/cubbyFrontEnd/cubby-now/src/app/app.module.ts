@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LeftNavbarComponent } from './components/left-navbar/left-navbar.component';
 import { RightNavbarComponent } from './components/right-navbar/right-navbar.component';
+import { ViewGroupsComponent } from './components/view-groups/view-groups.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RightNavbarComponent } from './components/right-navbar/right-navbar.com
     LoginbarComponent,
     LeftNavbarComponent,
     RightNavbarComponent,
+    ViewGroupsComponent,
   ],
   imports: [
     BrowserModule,
