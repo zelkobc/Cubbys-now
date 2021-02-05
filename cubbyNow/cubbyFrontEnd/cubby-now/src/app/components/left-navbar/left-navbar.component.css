@@ -97,7 +97,7 @@
   }
 
 
-/* Small screens */
+/* Small screens.  Could work but doesn't look good at the moment.  This would drop the navbar to the bottom of the screen for easier readability
 @media only screen and (max-width: 600px) {
     .navbar {
       bottom: 0;
@@ -120,7 +120,7 @@
     main {
       margin: 0;
     }
-  }
+  } */
   
   /* Large screens */
   @media only screen and (min-width: 600px) {
