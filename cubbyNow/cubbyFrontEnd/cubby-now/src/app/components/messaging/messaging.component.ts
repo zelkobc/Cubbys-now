@@ -20,14 +20,14 @@ Messages: Message[];
 Users: User[];
 hasFlag: number;
 authFlag: number;
-@Input() loggedUser: User;
+@Input() loggedUser: User = window.sessionStorage.user;
 
   constructor(private messageService:MessageService, private userService:UserService) {
    }
 
   ngOnInit(): void {
     console.log(this.loggedUser)
-    this.messageService.getMessages(this.loggedUser.id).subscribe(
+    this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
       resp=> {
         this.Messages = resp;
       }

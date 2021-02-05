@@ -14,7 +14,7 @@ public class User {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer userid;
+	private Integer id;
 	@Column(name="username")
 	private String name;
 	@Column(name="passwrd")
@@ -35,7 +35,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", name=" + name + ", password=" + password + ", role=" + role + ", groups="
+		return "User [id=" + id + ", name=" + name + ", password=" + password + ", role=" + role + ", groups="
 				+ groups + "]";
 	}
 
@@ -50,7 +50,7 @@ public class User {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((userid == null) ? 0 : userid.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -86,10 +86,10 @@ public class User {
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
-		if (userid == null) {
-			if (other.userid != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!userid.equals(other.userid))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
@@ -111,15 +111,15 @@ public class User {
 
 
 
-	public Integer getUserid() {
-		return userid;
+	public Integer getid() {
+		return id;
 	}
 
 
 
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setid(Integer id) {
+		this.id = id;
 	}
 
 
@@ -168,7 +168,7 @@ public class User {
 
 
 public User() {
-		userid = 0;
+		id = 0;
 		name = "";
 		password = "";
 		role = new Role() ;

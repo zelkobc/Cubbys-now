@@ -49,7 +49,7 @@ public class MessageController {
 	}
 	@GetMapping(path = "/user/{ReceiverId}")
 	public ResponseEntity<List<Messages>> getMessagesByReceiver(@PathVariable int ReceiverId) {
-		Integer usrId = this.userService.getUser(ReceiverId).getUserid();
+		Integer usrId = this.userService.getUser(ReceiverId).getid();
 		User Receiver = this.userService.getUser(ReceiverId);
 		if (usrId != null) {
 		List<Messages> messages = this.messageService.getAllMessagesByReceiver(Receiver);

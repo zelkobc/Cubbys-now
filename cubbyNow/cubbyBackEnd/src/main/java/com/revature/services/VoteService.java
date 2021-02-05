@@ -47,7 +47,7 @@ public class VoteService {
 		List<Vote> votes = getAllVotesByPost(postid);
 		if(votes != null) {
 		for(int i = 0; i < votes.size(); i++) {
-			if (votes.get(i).getUserid() == user.getUserid()) {
+			if (votes.get(i).getUserid() == user.getid()) {
 				return true;
 			}
 		}
