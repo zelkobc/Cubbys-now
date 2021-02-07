@@ -10,9 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.*;
-=======
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
->>>>>>> 6a43135c47fbfd518bb80b55fca99956b022ca6c
-
 @RestController
 @Component
-@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @RequestMapping(path = "/messages")
 @CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 public class MessageController {

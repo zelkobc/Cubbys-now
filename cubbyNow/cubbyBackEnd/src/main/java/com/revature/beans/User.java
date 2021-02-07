@@ -35,11 +35,7 @@ public class User {
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
 		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", role=" + role + ", groups="
-=======
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", groups="
->>>>>>> 6a43135c47fbfd518bb80b55fca99956b022ca6c
 				+ groups + "]";
 	}
 
@@ -172,11 +168,7 @@ public class User {
 
 
 public User() {
-<<<<<<< HEAD
-		userid = 0;
-=======
 		id = 0;
->>>>>>> 6a43135c47fbfd518bb80b55fca99956b022ca6c
 		username = "";
 		password = "";
 		role = new Role() ;
