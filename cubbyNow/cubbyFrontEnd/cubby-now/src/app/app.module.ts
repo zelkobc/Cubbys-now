@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { LeftNavbarComponent } from './components/left-navbar/left-navbar.component';
 import { RightNavbarComponent } from './components/right-navbar/right-navbar.component';
 import { CommonModule } from '@angular/common';
-import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';  
+import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';
+import { VotingComponent } from './components/voting/voting.component';  
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ViewmessagesComponent } from './components/viewmessages/viewmessages.co
     LeftNavbarComponent,
     RightNavbarComponent,
     ViewmessagesComponent,
+    VotingComponent,
   ],
   imports: [
     CommonModule,

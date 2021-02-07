@@ -20,7 +20,7 @@
             </tr>
             <tr *ngFor="let User of Users">
                 <td>{{ User.id | json}}</td>
-                <td>{{( User.name | json).replace("\"", "").replace("\"", "") | titlecase}}</td>
+                <td>{{( User.username | json).replace("\"", "").replace("\"", "") | titlecase}}</td>
             </tr>
         </table>
     </h2>

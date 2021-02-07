@@ -40,7 +40,7 @@ public class UserService {
     }
 	
 	public User getUserByUsername(String username) {
-		return userDao.findUserByName(username);
+		return userDao.findUserByUsername(username);
 	}
 	
 	public List<User> getAllUsers(){

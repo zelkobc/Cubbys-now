@@ -23,6 +23,12 @@ export class ViewmessagesComponent implements OnInit {
         console.log(this.Messages);
       }
     );
+    const Observer = {
+      next: x => console.log('we got' + x),
+      error: err => console.error('error' + err),
+      complete: () => console.log('complete')
+    }
+    this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(Observer)
   }
 
 }

@@ -16,7 +16,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="username")
-	private String name;
+	private String username;
 	@Column(name="passwrd")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password; 
@@ -35,7 +35,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", role=" + role + ", groups="
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", groups="
 				+ groups + "]";
 	}
 
@@ -47,7 +47,7 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -71,10 +71,10 @@ public class User {
 				return false;
 		} else if (!groups.equals(other.groups))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!username.equals(other.username))
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -125,15 +125,15 @@ public class User {
 
 
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
 
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
@@ -169,7 +169,7 @@ public class User {
 
 public User() {
 		id = 0;
-		name = "";
+		username = "";
 		password = "";
 		role = new Role() ;
 	}
