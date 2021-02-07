@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 5rem;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-left: 5rem;">
     <a class="navbar-brand" routerLink="/" routerLinkActive="active"
       ></a
     >
@@ -21,7 +21,7 @@
         class="navbar-nav mr-auto mt-2 mt-lg-0"
       >
 
-  <p> Welcome {{ loggedUser.username }}</p>
+      <p class="navbar"> Welcome {{ loggedUser.username }}</p>
         <li class="nav-item">
           <a class="nav-link" routerLink="/classroom" routerLinkActive="active">
             <span>Classroom</span>
@@ -43,13 +43,17 @@
   
       <ng-template #authNav>
         
-        <form>
-            <label for="user">Username: </label>
-            <input id="user" name="user" type="text" [(ngModel)]="user" />
-            <label for="pass"> Password: </label>
-            <input id="pass" name="pass" type="password" [(ngModel)]="pass" />
-            <button type="button" id="loginBtn" (click)="logIn()">Log In</button>
-        </form>
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="user"></label>
+            <input id="user" name="user" type="text" placeholder="Username" class="form-control" [(ngModel)]="user" />
+          </div>
+          <div class="form-group">
+            <label for="pass"></label>
+            <input id="pass" name="pass" type="password" placeholder="Password" class="form-control" [(ngModel)]="pass" />
+            <button type="button" class="btn btn-primary" id="loginBtn" (click)="logIn()">Log In</button>
+          </div>
+        </div>
          
       </ng-template>
   

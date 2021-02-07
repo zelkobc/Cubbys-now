@@ -13,6 +13,9 @@ import { RightNavbarComponent } from './components/right-navbar/right-navbar.com
 import { CommonModule } from '@angular/common';
 import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';
 import { VotingComponent } from './components/voting/voting.component';  
+import { ViewGroupsComponent } from './components/view-groups/view-groups.component';
+import {PostPageComponent} from './components/post-page/post-page.component';
+import {PostComponent} from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { VotingComponent } from './components/voting/voting.component';
     RightNavbarComponent,
     ViewmessagesComponent,
     VotingComponent,
+    ViewGroupsComponent,
+    PostPageComponent,
+    PostComponent
   ],
   imports: [
     CommonModule,

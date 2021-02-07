@@ -1,0 +1,4 @@
+<br>
+<div class="card-deck justify-content-center" *ngIf = "postArray">
+  <app-post *ngFor = "let p of postArray" [inputPost] = "p"></app-post>
+</div>

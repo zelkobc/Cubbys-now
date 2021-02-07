@@ -20,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @Component
-@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @RequestMapping(path = "/messages")
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 public class MessageController {
 	
 	private final MessageService messageService;
