@@ -4,6 +4,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -11,10 +14,11 @@ public class User {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer userid;
+	private Integer id;
 	@Column(name="username")
 	private String username;
 	@Column(name="passwrd")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password; 
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="role_id")	
@@ -31,7 +35,11 @@ public class User {
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", role=" + role + ", groups="
+=======
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", groups="
+>>>>>>> 6a43135c47fbfd518bb80b55fca99956b022ca6c
 				+ groups + "]";
 	}
 
@@ -46,7 +54,7 @@ public class User {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((userid == null) ? 0 : userid.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -82,10 +90,10 @@ public class User {
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
-		if (userid == null) {
-			if (other.userid != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!userid.equals(other.userid))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
@@ -107,15 +115,15 @@ public class User {
 
 
 
-	public Integer getUserid() {
-		return userid;
+	public Integer getid() {
+		return id;
 	}
 
 
 
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setid(Integer id) {
+		this.id = id;
 	}
 
 
@@ -164,7 +172,11 @@ public class User {
 
 
 public User() {
+<<<<<<< HEAD
 		userid = 0;
+=======
+		id = 0;
+>>>>>>> 6a43135c47fbfd518bb80b55fca99956b022ca6c
 		username = "";
 		password = "";
 		role = new Role() ;

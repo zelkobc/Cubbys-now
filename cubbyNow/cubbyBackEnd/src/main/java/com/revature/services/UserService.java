@@ -27,7 +27,7 @@ public class UserService {
 //		} else {
 			userDao.save(u);
 //		}
-		return u.getUserid();
+		return u.getid();
 	}
 	public User getUser(int id) {
 		System.out.println("get reached");

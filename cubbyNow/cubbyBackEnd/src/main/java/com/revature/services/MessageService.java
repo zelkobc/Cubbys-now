@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Messages;
+import com.revature.beans.User;
 import com.revature.data.MessageDAO;
 
 @Service
@@ -25,9 +26,9 @@ public class MessageService {
 	public List<Messages> getAllMessages(){
 		return messageDAO.findAll();
 	}
-	@EntityGraph(value="Messages.receiverid", type = EntityGraphType.FETCH)
-	public List<Messages> getAllMessagesByReceiverId(Integer receiverid) {
-		return messageDAO.findByReceiverid(receiverid);
+	@EntityGraph(value="Messages.receiver", type = EntityGraphType.FETCH)
+	public List<Messages> getAllMessagesByReceiver(User receiver) {
+		return messageDAO.findByReceiver(receiver);
 	}
 	public Integer addMessages(Messages message) {
 		if (!messageDAO.existsById(message.getId())) {

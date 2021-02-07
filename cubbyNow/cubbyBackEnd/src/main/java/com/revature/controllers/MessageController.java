@@ -10,10 +10,25 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+>>>>>>> 6a43135c47fbfd518bb80b55fca99956b022ca6c
 
 @RestController
 @Component
+@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @RequestMapping(path = "/messages")
 @CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 public class MessageController {
@@ -34,20 +49,20 @@ public class MessageController {
 //		if(loggedUser != null && (loggedUser.getUserid().equals(message.getWriterid())) || loggedUser != null && (loggedUser.getUserid().equals(message.getReceiverid()))) { check password and id for uniqueness; maybe just another ||
 		if(message != null) {
 			return ResponseEntity.ok(message);
-		} else {
+		} 
 			return ResponseEntity.notFound().build();
-		}
-//		 else {
-//		 return ResponseEntity.badRequest.build();
-//		}
-//	}
 	}
 	@GetMapping(path = "/user/{ReceiverId}")
 	public ResponseEntity<List<Messages>> getMessagesByReceiver(@PathVariable int ReceiverId) {
-		Integer usrId = this.userService.getUser(ReceiverId).getUserid();
+		Integer usrId = this.userService.getUser(ReceiverId).getid();
+		User Receiver = this.userService.getUser(ReceiverId);
 		if (usrId != null) {
-		List<Messages> messages = this.messageService.getAllMessagesByReceiverId(ReceiverId);
+		List<Messages> messages = this.messageService.getAllMessagesByReceiver(Receiver);
+		if (messages != null) {
 		return ResponseEntity.ok(messages);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 		} else {
 		return ResponseEntity.badRequest().build(); 
 		}
@@ -61,6 +76,15 @@ public class MessageController {
 			return ResponseEntity.ok(message.getId());
 		}
 		return ResponseEntity.badRequest().build();
+	}
+	@PutMapping
+	public void updateMessage(@RequestBody Messages message) {
+		Integer Id = message.getId();
+		if (this.messageService.getMessageById(Id) != null) {
+			this.messageService.updateMessage(message);
+			return;
+		}
+		return;
 	}
 	@DeleteMapping("/{id}") //100 MILLION PERCENT REQUIRES AUTHORIZATION AT SOME POINT PLS PLS PLS 
 	public ResponseEntity<Void> deleteMessage(@PathVariable Integer id)

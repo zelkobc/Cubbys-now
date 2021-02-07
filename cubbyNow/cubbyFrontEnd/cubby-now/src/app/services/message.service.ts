@@ -11,19 +11,20 @@ import { Message } from '../models/message';
 })
 export class MessageService {
   userMessagesUrl: string;
-  private formHeaders = this.urlService.formHeaders;
+
+  private formHeaders
   private regHeaders = this.urlService.regHeaders;
 
   constructor(private http: HttpClient, private urlService: UrlService, private cookieService: CookieService) {
     this.userMessagesUrl = this.urlService.getUrl() + 'messages/'
    }
-   getMessages(id: Number): Observable<Message[]> {
-     return this.http.get(this.userMessagesUrl + /user/id, {withCredentials:true}).pipe(
+   getMessages(id: number): Observable<Message[]> {
+     return this.http.get(this.userMessagesUrl + 'user/' + id, {withCredentials:true}).pipe(
        map(resp => resp as Message[])
      );
    }
    writeMessage(userMessage: Message): Observable<object> {
-     return this.http.post(this.userMessagesUrl, Message, {headers: this.regHeaders, withCredentials:true}).pipe(
+     return this.http.post(this.userMessagesUrl, userMessage, {headers: this.regHeaders, withCredentials:true}).pipe(
        map(resp => resp as Message)
      )
    }
