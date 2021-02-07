@@ -6,6 +6,6 @@
     <a href="#" class="card-link btn tbn-primary" *ngIf="loggedUser === author">Edit</a>
   </div>
   <div class="card-footer" *ngFor="let reply of replyArray">
-    {{ reply.author.username }}{{ ":   " }}{{ reply.message }}
+    {{ reply.author.username }}:   {{ reply.message }}
   </div>
 </div>
