@@ -89,6 +89,7 @@ public class UserController {
 		try {userService.updateUser(user);
 			return ResponseEntity.ok().build();
 		}catch (Exception e){
+			e.printStackTrace();
 			return ResponseEntity.badRequest().build();
 		}
 	}

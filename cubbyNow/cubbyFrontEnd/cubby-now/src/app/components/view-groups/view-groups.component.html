@@ -1,4 +1,8 @@
-<p>view-groups works!</p>
+
 <div *ngIf = "groups">
-    <p *ngFor = "let group of groups">this group exists definately {{group.id}}</p>
+    <h2>All Groups</h2>
+    <ul class="list-group">
+        <li *ngFor = "let group of groups" class="list-group-item">{{group.name}}</li>
+
+    </ul>
 </div>
