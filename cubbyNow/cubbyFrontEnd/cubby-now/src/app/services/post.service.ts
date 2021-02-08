@@ -34,6 +34,14 @@ export class PostService {
     return this.http.get(this.url + "/all")
   }
 
+  getPublicPosts(){
+    return this.http.get(this.url + "/public")
+  }
+
+  getGroupPosts(id: number){
+    return this.http.get(this.url + "/groups/" + id);
+  }
+
   updatePost(post: Post)
   {
     return this.http.put(this.url, post, {headers: this.regHeaders, withCredentials:true});
