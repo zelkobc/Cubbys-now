@@ -29,11 +29,9 @@ export class PostService {
     return this.http.get(this.url + "/" + id);
   }
 
-  getAllPosts(): Observable<Post[]>
+  getAllPosts()
   {
-    return this.http.get(this.url + "/all", {headers: this.regHeaders, withCredentials:true}).pipe(
-      map(resp=> resp as Post[])
-    );
+    return this.http.get(this.url + "/all")
   }
 
   updatePost(post: Post)
