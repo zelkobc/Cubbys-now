@@ -29,7 +29,7 @@ import { VotingComponent } from './components/voting/voting.component';
     PostPageComponent,
     PostComponent,
     ViewmessagesComponent,
-    VotingComponent,
+    VotingComponent
   ],
   imports: [
     CommonModule,
