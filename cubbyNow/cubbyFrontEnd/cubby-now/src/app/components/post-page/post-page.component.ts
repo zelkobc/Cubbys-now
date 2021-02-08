@@ -17,7 +17,7 @@ export class PostPageComponent implements OnInit {
   }
 
   refresh(){
-    this.postServ.getAllPosts().subscribe(
+    this.postServ.getPublicPosts().subscribe(
       resp => {
         this.postArray = resp as Post[];
         console.log(resp);

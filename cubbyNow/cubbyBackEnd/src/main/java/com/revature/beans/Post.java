@@ -10,15 +10,20 @@ public class Post {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer postid;
-	
-	//@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	//@JoinColumn(name="author_id")
 	@Column(name="author_id")
 	private Integer authorid;
-	
+	@Column(name="group_id")
+	private Integer groupid;
 	@Column(name="pcontent")
 	private String content;
 	
+  public Post(){
+    postid = -1;
+    authorid = -1;
+    groupid = null;
+    content = "";
+  }
+
 	public Integer getPostid() {
 		return postid;
 	}
@@ -31,28 +36,32 @@ public class Post {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	
-	
 	public Integer getAuthorid() {
 		return authorid;
 	}
 	public void setAuthorid(Integer authorid) {
 		this.authorid = authorid;
 	}
-	
-	
+	public Integer getGroupid() {
+		return groupid;
+	}
+	public void setGroupid(Integer groupid) {
+		this.groupid = groupid;
+	}
 	
 	@Override
 	public String toString() {
-		return "Post [postid=" + postid + ", authorid=" + authorid + ", content=" + content + "]";
+		return "Post [postid=" + postid + ", authorid=" + authorid + ", groupid=" + groupid + ", content=" + content
+				+ "]";
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((authorid == null) ? 0 : authorid.hashCode());
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + ((groupid == null) ? 0 : groupid.hashCode());
 		result = prime * result + ((postid == null) ? 0 : postid.hashCode());
 		return result;
 	}
@@ -75,16 +84,16 @@ public class Post {
 				return false;
 		} else if (!content.equals(other.content))
 			return false;
+		if (groupid == null) {
+			if (other.groupid != null)
+				return false;
+		} else if (!groupid.equals(other.groupid))
+			return false;
 		if (postid == null) {
 			if (other.postid != null)
 				return false;
 		} else if (!postid.equals(other.postid))
 			return false;
 		return true;
-	}
-	public Post() {
-		postid = 0;
-		authorid = -1;
-		content = "";
 	}
 }
