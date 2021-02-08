@@ -22,12 +22,16 @@ hasFlag: number;
 authFlag: number;
 messageString: string;
 @Input() loggedUser: User = window.sessionStorage.user;
+roleFlag: number;
 
   constructor(private messageService:MessageService, private userService:UserService) {
    }
 
   ngOnInit(): void {
+    if(JSON.parse(window.sessionStorage.user).role.id > 1){
+      this.roleFlag = 1;
     this.getUsers();
+    }
   }
 onSubmit() {
   this.newMessage = new Message;

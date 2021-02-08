@@ -11,18 +11,17 @@
   </form>
   <button type="submit" class="button is-danger is-large" (click)=onSubmit()>Submit</button>
 </div>
-<div>
+<div *ngIf = "roleFlag">
     <h2>
         <table>
             <tr>
                 <th>User ID</th>
                 <th>Username</th>
             </tr>
-            <tr *ngFor="let User of Users">
+            <tr class="w3-2" *ngFor="let User of Users">
                 <td>{{ User.id | json}}</td>
                 <td>{{( User.username | json).replace("\"", "").replace("\"", "") | titlecase}}</td>
             </tr>
         </table>
     </h2>
 </div>
-<app-viewmessages></app-viewmessages>
