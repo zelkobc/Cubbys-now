@@ -11,3 +11,8 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 cubbyNow/cubbyFrontEnd/node_modules
 /.metadata/
+cubbyNow/.metadata/.lock
+cubbyNow/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_a.cfs
+cubbyNow/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
+cubbyNow/.metadata/.plugins/org.eclipse.rse.core/.log
+cubbyNow/.metadata/.plugins/org.eclipse.rse.ui/.log
