@@ -37,7 +37,17 @@ public class PostController {
 	{
 		return ResponseEntity.ok(postServ.getAllPosts());
 	}
+
+	@GetMapping("/public")
+	public ResponseEntity<List<Post>> getPublicPosts(){
+	  return ResponseEntity.ok(postServ.getPublicPosts());
+	}
 	
+  @GetMapping("/groups/{groupId}")
+  public ResponseEntity<List<Post>> getGroupPosts(@PathVariable Integer groupId){
+    return ResponseEntity.ok(postServ.getGroupPosts(groupId));
+  }
+
 	@PostMapping
 	public ResponseEntity<Integer> addPost(@RequestBody Post post)
 	{
