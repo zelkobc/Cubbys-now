@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';
 import { VotingComponent } from './components/voting/voting.component';
 import { ClassCalendarComponent } from './components/class-calendar/class-calendar.component';  
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ClassCalendarComponent } from './components/class-calendar/class-calend
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
