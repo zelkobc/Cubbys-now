@@ -70,9 +70,7 @@ public class UserController {
 	@PutMapping(path = "/login")
 	public ResponseEntity<User> logIn(@RequestParam("user") String username,
 			@RequestParam("pass") String password){
-		System.out.println("The Username Recieved was:" + username + " and the password was: " + password);
 		User User = userService.getUserByUsername(username);
-		System.out.println("THe retrieved user: "+User.getUsername());
 		if (User != null) {
 			if (User.getPassword().equals(password)) {
 				return ResponseEntity.ok(User);
