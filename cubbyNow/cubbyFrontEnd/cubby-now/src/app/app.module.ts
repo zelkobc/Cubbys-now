@@ -18,6 +18,13 @@ import { ViewmessagesComponent } from './components/viewmessages/viewmessages.co
 import { VotingComponent } from './components/voting/voting.component';
 import { ClassCalendarComponent } from './components/class-calendar/class-calendar.component';  
 import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
