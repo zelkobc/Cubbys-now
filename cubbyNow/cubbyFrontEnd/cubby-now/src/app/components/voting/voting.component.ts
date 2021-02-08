@@ -14,4 +14,9 @@ export class VotingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getAllVotes(id:number) {
+
+  }
+  
+
 }

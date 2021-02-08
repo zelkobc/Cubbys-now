@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Post } from '../models/post';
 import { UrlService } from './url.service';
 
@@ -27,9 +29,11 @@ export class PostService {
     return this.http.get(this.url + "/" + id);
   }
 
-  getAllPosts()
+  getAllPosts(): Observable<Post[]>
   {
-    return this.http.get(this.url + "/all");
+    return this.http.get(this.url + "/all", {headers: this.regHeaders, withCredentials:true}).pipe(
+      map(resp=> resp as Post[])
+    );
   }
 
   updatePost(post: Post)

@@ -3,3 +3,11 @@ div{
     padding: 1rem;
     margin-right: 25rem;
 }
+.field{
+    background-color: #080808;
+    border: 2px solid darkcyan;
+}
+.textarea{
+    resize: both;
+    margin-right:20rem;
+}
