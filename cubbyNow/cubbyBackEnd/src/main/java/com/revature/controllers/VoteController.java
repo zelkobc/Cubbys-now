@@ -33,17 +33,14 @@ public class VoteController {
 	}
 	@GetMapping("/{postid}")
 	public ResponseEntity<List<Vote>> getVotesByPost(@PathVariable Integer postid) {
-		Post post = postServ.getPostById(postid);
-		if (post != null) {
+
 			List<Vote> votes = this.voteServ.getAllVotesByPost(postid);
 			if (votes != null) {
 				return ResponseEntity.ok(votes);
 			} else {
 				return ResponseEntity.notFound().build();
 			}
-		} else {
-		return ResponseEntity.badRequest().build();
-		}
+
 	}
 	@PostMapping
 	public ResponseEntity<Integer> addVote(@RequestBody Vote vote) {
@@ -54,17 +51,13 @@ public class VoteController {
 	}
 	@PutMapping
 	public void updateVote(@RequestBody Vote vote) {
-		Integer id = vote.getVoteid();
-		if (this.voteServ.getVoteById(id) != null) {
-			this.voteServ.updateVote(vote);
+		this.voteServ.updateVote(vote);
 			return;
-		}
-		return;
 	}
-	@GetMapping("/check/{postid}")
-	public ResponseEntity<Boolean> hasVoted(@RequestBody User loggedUser, @PathVariable Integer postid) {
-		if (this.voteServ.hasVoted(loggedUser, postid) == true) {
-			return ResponseEntity.ok(true);
-		}	return ResponseEntity.ok(false);
+	@GetMapping("/check/{postid}/{userid}")
+	public ResponseEntity<Integer> hasVoted(@PathVariable Integer userid, @PathVariable Integer postid) {
+		if (this.voteServ.hasVoted(userid, postid) != 0) {
+			return ResponseEntity.ok(this.voteServ.hasVoted(userid, postid));
+		}	return ResponseEntity.ok(0);
 	}
 }

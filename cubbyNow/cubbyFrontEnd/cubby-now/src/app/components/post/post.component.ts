@@ -14,7 +14,7 @@ import {UserService} from 'src/app/services/user.service';
 export class PostComponent implements OnInit {
   @Input() inputPost: Post;
   author: User;
-  loggedUser: User;
+  loggedUser: User = JSON.parse(window.sessionStorage.user);
   replyArray: Reply[] = [];
   
   constructor(private postServ: PostService, private userServ: UserService, private replyServ: ReplyService) { }

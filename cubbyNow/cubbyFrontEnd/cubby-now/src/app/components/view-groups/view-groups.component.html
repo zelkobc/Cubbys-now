@@ -1,4 +1,9 @@
-<p>view-groups works!</p>
-<div *ngIf = "groups">
-    <p *ngFor = "let group of groups">this group exists definately {{group.id}}</p>
+
+<div *ngIf = "done">
+    <h2>{{message}}</h2>
+    <ul *ngIf = "groups" class="list-group">
+        <li>
+            <a *ngFor = "let group of groups" class="list-group-item" [routerLink]="['/onegroup', group.id]" routerLinkActive="active">{{group.name}}</a>
+        </li>
+    </ul>
 </div>
