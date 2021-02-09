@@ -20,10 +20,14 @@ import { ClassCalendarComponent } from './components/class-calendar/class-calend
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import googleCalendarPlugin   from '@fullcalendar/google-calendar';
+import  iCalendarPlugin from '@fullcalendar/icalendar'
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
-  interactionPlugin
+  interactionPlugin,
+  googleCalendarPlugin,
+  iCalendarPlugin
 ]);
 
 @NgModule({
