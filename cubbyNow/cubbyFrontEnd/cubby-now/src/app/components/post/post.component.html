@@ -9,4 +9,4 @@
     {{ reply.author.username }}:   {{ reply.message }}
   </div>
 </div>
-<app-voting [relPost]="inputPost"></app-voting>
+<app-voting [relPost]="inputPost" *ngIf="loggedUser"></app-voting>

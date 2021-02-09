@@ -17,15 +17,15 @@ export class VotingComponent implements OnInit {
   newVote: Vote;
   voteTotal: number;
   voteAvg: number;
-  loggedUser = JSON.parse(window.sessionStorage.user);
+  loggedUser : User = JSON.parse(window.sessionStorage.user);
   @Input() relPost: Post;
-  voteStatus: Boolean;
+  voteStatus: number;
 
   constructor(private voteService:VoteService, private userService:UserService, private postService:PostService) { }
 
   ngOnInit(): void {
-    this.getAllVotes(this.relPost.postid)
-    this.checkVote(this.relPost.postid)
+    this.getAllVotes(this.relPost.postid);
+    this.checkVote(this.relPost.postid);
   }
 
   getAllVotes(id:number) {
@@ -39,11 +39,12 @@ export class VotingComponent implements OnInit {
       }
     )
   }
-  checkVote(id:number) {
+  checkVote(id:number){
     this.voteService.checkVote(id, this.loggedUser.id).subscribe(
       resp=> {
         this.voteStatus = resp;
       }
+      
     )
   }
   setVote(rating: number) {
@@ -53,11 +54,13 @@ export class VotingComponent implements OnInit {
     this.newVote.postid = this.relPost.postid;
     this.voteService.setVote(this.newVote).subscribe();
   }
-  getVoteById(id:number) {
-
-  }
   updateVote(rating: number) {
-
+    this.newVote = new Vote;
+    this.newVote.rating = rating;
+    this.newVote.voteid = this.voteStatus;
+    this.newVote.userid = JSON.parse(window.sessionStorage.user).id;
+    this.newVote.postid = this.relPost.postid;
+    this.voteService.updateVote(this.newVote).subscribe();
   }
 
 }

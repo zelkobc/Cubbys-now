@@ -28,9 +28,14 @@ export class VoteService {
        map(resp => resp as Vote)
      );
    }
-   checkVote(id: number, userid: number): Observable<Boolean> {
+   checkVote(id: number, userid: number): Observable<number> {
      return this.http.get(this.userVotesUrl + 'check/' + id + '/' + userid, {headers: this.regHeaders, withCredentials:true}).pipe(
-      map(resp => resp as Boolean)
+      map(resp => resp as number)
+     )
+   }
+   updateVote(vote: Vote): Observable<object> {
+     return this.http.put(this.userVotesUrl, vote, {headers: this.regHeaders, withCredentials: true}).pipe(
+       map(resp=> resp as Vote)
      )
    }
 }
