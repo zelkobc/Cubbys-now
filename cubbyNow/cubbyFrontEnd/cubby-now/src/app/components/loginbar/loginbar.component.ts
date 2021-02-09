@@ -37,7 +37,7 @@ export class LoginbarComponent implements OnInit {
       this.pass = alreadyLogged.password;
       this.regUser = '';
       this.regPass = '';
-      this.logIn();
+      this.loggedUser = alreadyLogged;
     } else {
       this.user = '';
       this.pass = '';
