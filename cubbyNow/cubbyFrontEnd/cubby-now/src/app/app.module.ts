@@ -16,7 +16,8 @@ import {PostComponent} from './components/post/post.component';
 import { CommonModule } from '@angular/common';
 import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';
 import { VotingComponent } from './components/voting/voting.component';
-import { ClassCalendarComponent } from './components/class-calendar/class-calendar.component';  
+import { ClassCalendarComponent } from './components/class-calendar/class-calendar.component';
+import { ViewOneGroupComponent } from './components/view-one-group/view-one-group.component';  
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ClassCalendarComponent } from './components/class-calendar/class-calend
     ViewmessagesComponent,
     VotingComponent,
     ClassCalendarComponent,
+    ViewOneGroupComponent,
   ],
   imports: [
     CommonModule,
