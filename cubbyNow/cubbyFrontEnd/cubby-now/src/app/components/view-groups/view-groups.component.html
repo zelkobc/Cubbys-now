@@ -1,7 +1,7 @@
 
-<div *ngIf = "groups">
-    <h2>All Groups</h2>
-    <ul class="list-group">
+<div *ngIf = "done">
+    <h2>{{message}}</h2>
+    <ul *ngIf = "groups" class="list-group">
         <li>
             <a *ngFor = "let group of groups" class="list-group-item" [routerLink]="['/onegroup', group.id]" routerLinkActive="active">{{group.name}}</a>
         </li>
