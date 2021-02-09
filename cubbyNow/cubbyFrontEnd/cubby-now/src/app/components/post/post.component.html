@@ -2,11 +2,16 @@
   <div class="card-body">
     <h5 class="card-title" *ngIf="author">{{ author.username }}</h5>
     <p class="card-text">{{ inputPost.content }}</p>
-    <a href="#" class="card-link btn btn-primary">Reply</a>
-    <a href="#" class="card-link btn tbn-primary" *ngIf="loggedUser === author">Edit</a>
+    <div class="input-group">
+      <input type="text" [(ngModel)]="replyInput" class="form-control" id="replyInput" placeholder="Type a reply" aria-label="Reply text" aria-describedby="reply-button">
+      <div class="input-group-append">
+        <button class="submit btn btn-primary" id="reply-button" (click)="replyButton()">Reply</button>
+      </div>
+    </div>
+    <button class="card-link btn tbn-primary" *ngIf="loggedUser === author">Edit</button>
   </div>
   <div class="card-footer" *ngFor="let reply of replyArray">
     {{ reply.author.username }}:   {{ reply.message }}
   </div>
 </div>
-<app-voting *ngIf="loggedUser" [relPost]="inputPost"></app-voting>
+<app-voting [relPost]="inputPost" *ngIf="loggedUser"></app-voting>
