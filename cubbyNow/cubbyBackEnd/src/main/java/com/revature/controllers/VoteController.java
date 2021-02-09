@@ -33,17 +33,14 @@ public class VoteController {
 	}
 	@GetMapping("/{postid}")
 	public ResponseEntity<List<Vote>> getVotesByPost(@PathVariable Integer postid) {
-		Post post = postServ.getPostById(postid);
-		if (post != null) {
+
 			List<Vote> votes = this.voteServ.getAllVotesByPost(postid);
 			if (votes != null) {
 				return ResponseEntity.ok(votes);
 			} else {
 				return ResponseEntity.notFound().build();
 			}
-		} else {
-		return ResponseEntity.badRequest().build();
-		}
+
 	}
 	@PostMapping
 	public ResponseEntity<Integer> addVote(@RequestBody Vote vote) {
@@ -61,9 +58,9 @@ public class VoteController {
 		}
 		return;
 	}
-	@GetMapping("/check/{postid}")
-	public ResponseEntity<Boolean> hasVoted(@RequestBody User loggedUser, @PathVariable Integer postid) {
-		if (this.voteServ.hasVoted(loggedUser, postid) == true) {
+	@GetMapping("/check/{postid}/{userid}")
+	public ResponseEntity<Boolean> hasVoted(@PathVariable Integer userid, @PathVariable Integer postid) {
+		if (this.voteServ.hasVoted(userid, postid) == true) {
 			return ResponseEntity.ok(true);
 		}	return ResponseEntity.ok(false);
 	}
