@@ -6,6 +6,8 @@ import { UserService } from '../../services/user.service';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { of } from 'rxjs/internal/observable/of';
 
+
+
 @Component({
   selector: 'app-loginbar',
   templateUrl: './loginbar.component.html',

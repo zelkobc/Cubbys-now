@@ -11,8 +11,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ViewmessagesComponent implements OnInit {
   Messages: Message[];
-  hasFlag: number;
   loggedUser: User = window.sessionStorage.user
+  loggedUserRole: number = JSON.parse(window.sessionStorage.user).role.id;
+  adminFlag: number;
   constructor(private messageService:MessageService, private userService:UserService) {
    }
 
@@ -23,12 +24,8 @@ export class ViewmessagesComponent implements OnInit {
         console.log(this.Messages);
       }
     );
-    const Observer = {
-      next: x => console.log('we got' + x),
-      error: err => console.error('error' + err),
-      complete: () => console.log('complete')
+    if(this.loggedUserRole > 1) {
+      this.adminFlag = 1;
     }
-    this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(Observer)
   }
-
 }

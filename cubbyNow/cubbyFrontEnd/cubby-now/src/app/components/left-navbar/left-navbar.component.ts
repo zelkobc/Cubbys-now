@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
 import { Router, RouterLinkActive, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-left-navbar',
