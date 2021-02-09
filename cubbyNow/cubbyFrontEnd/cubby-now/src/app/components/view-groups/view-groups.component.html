@@ -2,7 +2,8 @@
 <div *ngIf = "groups">
     <h2>All Groups</h2>
     <ul class="list-group">
-        <li *ngFor = "let group of groups" class="list-group-item">{{group.name}}</li>
-
+        <li>
+            <a *ngFor = "let group of groups" class="list-group-item" [routerLink]="['/onegroup', group.id]" routerLinkActive="active">{{group.name}}</a>
+        </li>
     </ul>
 </div>

@@ -1,1 +1,8 @@
-<p>view-one-group works!</p>
+<div>    
+    <div id = "postblock" *ngIf = "posts">
+        <h2 *ngIf = "group">Welcome to {{group.name}}</h2>
+        <app-post class = "post" *ngFor = "let p of posts" [inputPost] = "p"></app-post>
+        
+    </div>
+</div>
+    
