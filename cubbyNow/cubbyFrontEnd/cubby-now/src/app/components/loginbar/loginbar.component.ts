@@ -57,6 +57,7 @@ export class LoginbarComponent implements OnInit {
             this.loggedUser = resp;
             window.sessionStorage.user = JSON.stringify(this.loggedUser);
             this.logInEvent.emit();
+            window.location.reload();
           }
           else{
             alert("Invalid Credentials! Please try again!");
