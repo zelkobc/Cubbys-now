@@ -3,6 +3,7 @@ import { Group } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
 import { UserService } from 'src/app/services/user.service';
 
+
 @Component({
   selector: 'app-view-groups',
   templateUrl: './view-groups.component.html',
@@ -34,7 +35,6 @@ export class ViewGroupsComponent implements OnInit {
     if (person)
     {
       this.groups = person.groups;
-      console.log(this.groups);
     }
   }
 

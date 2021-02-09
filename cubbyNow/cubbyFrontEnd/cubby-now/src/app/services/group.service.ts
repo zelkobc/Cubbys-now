@@ -12,7 +12,7 @@ export class GroupService {
   url: string;
 
   constructor(private http: HttpClient, private urlServ: UrlService) { 
-    this.url = this.urlServ + "groups";
+    this.url = this.urlServ.getUrl() + "groups";
   }
 
   addGroup(group: Group)
