@@ -1,4 +1,4 @@
-<div class="stars" *ngIf="!voteStatus">
+<div class="stars" *ngIf="!this.voteStatus">
     <input type="radio" id="rate-5" name="rating-5" (click)="setVote(10)">
     <label for="rate-5"></label>
     <input type="radio" id="rate-4" name="rating-4" (click)="setVote(8)">
@@ -10,7 +10,7 @@
     <input type="radio" id="rate-1" name="rating-1" (click)="setVote(2)">
     <label for="rate-1"></label>
   </div>
-  <div class="stars" *ngIf="voteStatus">
+  <div class="stars" *ngIf="this.voteStatus">
     <input type="radio" id="rate-5" name="rating-5" (click)="updateVote(10)">
     <label for="rate-5"></label>
     <input type="radio" id="rate-4" name="rating-4" (click)="updateVote(8)">
