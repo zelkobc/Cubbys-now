@@ -51,12 +51,8 @@ public class VoteController {
 	}
 	@PutMapping
 	public void updateVote(@RequestBody Vote vote) {
-		Integer id = vote.getVoteid();
-		if (this.voteServ.getVoteById(id) != null) {
-			this.voteServ.updateVote(vote);
+		this.voteServ.updateVote(vote);
 			return;
-		}
-		return;
 	}
 	@GetMapping("/check/{postid}/{userid}")
 	public ResponseEntity<Boolean> hasVoted(@PathVariable Integer userid, @PathVariable Integer postid) {
