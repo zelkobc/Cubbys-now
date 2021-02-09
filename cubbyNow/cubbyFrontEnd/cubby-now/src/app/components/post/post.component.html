@@ -10,3 +10,4 @@
   </div>
 </div>
 <app-voting [relPost]="inputPost" *ngIf="loggedUser"></app-voting>
+<app-voting *ngIf="loggedUser" [relPost]="inputPost"></app-voting>
