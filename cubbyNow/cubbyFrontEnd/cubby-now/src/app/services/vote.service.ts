@@ -28,9 +28,9 @@ export class VoteService {
        map(resp => resp as Vote)
      );
    }
-   checkVote(id: number, loggedUser: User): Observable<Boolean> {
-     return this.http.post(this.userVotesUrl + 'check/' + id + '/', loggedUser, {headers: this.regHeaders, withCredentials:true}).pipe(
-       map(resp=> resp as Boolean)
+   checkVote(id: number, userid: number): Observable<Boolean> {
+     return this.http.get(this.userVotesUrl + 'check/' + id + '/' + userid, {headers: this.regHeaders, withCredentials:true}).pipe(
+      map(resp => resp as Boolean)
      )
    }
 }

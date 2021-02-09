@@ -17,18 +17,21 @@ export class VotingComponent implements OnInit {
   newVote: Vote;
   voteTotal: number;
   voteAvg: number;
-  @Input() loggedUser: User;
+  loggedUser = JSON.parse(window.sessionStorage.user);
   @Input() relPost: Post;
+  voteStatus: Boolean;
 
   constructor(private voteService:VoteService, private userService:UserService, private postService:PostService) { }
 
   ngOnInit(): void {
     this.getAllVotes(this.relPost.postid)
+    this.checkVote(this.relPost.postid)
   }
 
   getAllVotes(id:number) {
     this.voteService.getVotesByPost(id).subscribe(
       resp=> {
+        this.votes = resp;
         this.voteCount = resp.length;
         console.log(this.voteCount);
         this.voteTotal = resp.map(vote => vote.rating).reduce((a, b) => {return a + b});
@@ -36,6 +39,25 @@ export class VotingComponent implements OnInit {
       }
     )
   }
+  checkVote(id:number) {
+    this.voteService.checkVote(id, this.loggedUser.id).subscribe(
+      resp=> {
+        this.voteStatus = resp;
+      }
+    )
+  }
+  setVote(rating: number) {
+    this.newVote = new Vote;
+    this.newVote.rating = rating;
+    this.newVote.userid = JSON.parse(window.sessionStorage.user).id;
+    this.newVote.postid = this.relPost.postid;
+    this.voteService.setVote(this.newVote).subscribe();
+  }
+  getVoteById(id:number) {
 
+  }
+  updateVote(rating: number) {
+
+  }
 
 }

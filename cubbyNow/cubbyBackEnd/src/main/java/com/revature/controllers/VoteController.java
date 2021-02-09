@@ -58,9 +58,9 @@ public class VoteController {
 		}
 		return;
 	}
-	@GetMapping("/check/{postid}")
-	public ResponseEntity<Boolean> hasVoted(@RequestBody User loggedUser, @PathVariable Integer postid) {
-		if (this.voteServ.hasVoted(loggedUser, postid) == true) {
+	@GetMapping("/check/{postid}/{userid}")
+	public ResponseEntity<Boolean> hasVoted(@PathVariable Integer userid, @PathVariable Integer postid) {
+		if (this.voteServ.hasVoted(userid, postid) == true) {
 			return ResponseEntity.ok(true);
 		}	return ResponseEntity.ok(false);
 	}

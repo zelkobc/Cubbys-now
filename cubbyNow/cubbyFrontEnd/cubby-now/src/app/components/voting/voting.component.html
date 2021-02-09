@@ -1,13 +1,25 @@
-<div class="stars">
-    <input type="radio" id="rate-5" name="rating-1">
+<div class="stars" *ngIf="!voteStatus">
+    <input type="radio" id="rate-5" name="rating-5" (click)="setVote(10)">
     <label for="rate-5"></label>
-    <input type="radio" id="rate-4" name="rating-1">
+    <input type="radio" id="rate-4" name="rating-4" (click)="setVote(8)">
     <label for="rate-4"></label>
-    <input type="radio" id="rate-3" name="rating-1">
+    <input type="radio" id="rate-3" name="rating-3" (click)="setVote(6)">
     <label for="rate-3"></label>
-    <input type="radio" id="rate-2" name="rating-1">
+    <input type="radio" id="rate-2" name="rating-2" (click)="setVote(4)">
     <label for="rate-2"></label>
-    <input type="radio" id="rate-1" name="rating-1">
+    <input type="radio" id="rate-1" name="rating-1" (click)="setVote(2)">
+    <label for="rate-1"></label>
+  </div>
+  <div class="stars" *ngIf="voteStatus">
+    <input type="radio" id="rate-5" name="rating-5" (click)="updateVote(10)">
+    <label for="rate-5"></label>
+    <input type="radio" id="rate-4" name="rating-4" (click)="updateVote(8)">
+    <label for="rate-4"></label>
+    <input type="radio" id="rate-3" name="rating-3" (click)="updateVote(6)">
+    <label for="rate-3"></label>
+    <input type="radio" id="rate-2" name="rating-2" (click)="updateVote(4)">
+    <label for="rate-2"></label>
+    <input type="radio" id="rate-1" name="rating-1" (click)="updateVote(2)">
     <label for="rate-1"></label>
   </div>
   <div class="count">
