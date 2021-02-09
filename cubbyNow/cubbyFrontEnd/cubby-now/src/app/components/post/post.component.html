@@ -3,9 +3,9 @@
     <h5 class="card-title" *ngIf="author">{{ author.username }}</h5>
     <p class="card-text">{{ inputPost.content }}</p>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Type a reply" aria-label="Reply text" aria-describedby="reply-button">
+      <input type="text" [(ngModel)]="replyInput" class="form-control" id="replyInput" placeholder="Type a reply" aria-label="Reply text" aria-describedby="reply-button">
       <div class="input-group-append">
-        <button class="submit btn btn-primary" id="reply-button">Reply</button>
+        <button class="submit btn btn-primary" id="reply-button" (click)="replyButton()">Reply</button>
       </div>
     </div>
     <button class="card-link btn tbn-primary" *ngIf="loggedUser === author">Edit</button>

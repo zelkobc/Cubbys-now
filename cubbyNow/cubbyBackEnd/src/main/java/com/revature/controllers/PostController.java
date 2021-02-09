@@ -51,7 +51,6 @@ public class PostController {
 	@PostMapping
 	public ResponseEntity<Integer> addPost(@RequestBody Post post)
 	{
-		System.out.println(post);
 		Integer newId = postServ.addPost(post);
 		if (newId != null)
 		{

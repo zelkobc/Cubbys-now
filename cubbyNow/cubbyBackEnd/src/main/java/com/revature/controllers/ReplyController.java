@@ -25,12 +25,14 @@ public class ReplyController{
   // Create
   @PostMapping
   public ResponseEntity<Integer> addReply(@RequestBody Reply reply){
+      System.out.println("~~~~~~~~~~~ We here: " + reply);
       Reply check = null; 
 	    try{
 	        check = replyServ.getReplyById(reply.getId());
 	        System.out.println(check);
 	    }
 	    catch(Exception e){
+	      e.printStackTrace();
 	    }
 	    if(check == null){
 	        return ResponseEntity.ok(replyServ.addReply(reply));
