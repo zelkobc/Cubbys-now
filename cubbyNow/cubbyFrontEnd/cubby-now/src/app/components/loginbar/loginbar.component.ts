@@ -70,11 +70,12 @@ export class LoginbarComponent implements OnInit {
   logOut() {
     this.userService.logoutUser().subscribe(
       resp => {
-        this.loggedUser = null;
+        // this.loggedUser = null;
+        window.sessionStorage.removeItem("user");
         this.user = '';
         this.pass = '';
 
-        window.sessionStorage.user = JSON.stringify(this.loggedUser);
+        // window.sessionStorage.user = JSON.stringify(this.loggedUser);
         this.logOutEvent.emit();
         window.location.reload();
       }
