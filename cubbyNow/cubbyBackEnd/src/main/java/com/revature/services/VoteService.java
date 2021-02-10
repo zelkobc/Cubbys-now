@@ -43,15 +43,15 @@ public class VoteService {
 			voteDAO.save(vote);
 		}
 	}
-	public boolean hasVoted(Integer userid, Integer postid) { // takes in a vote, checks the votes for the post it applies to and sees if the voting user has voted before.
+	public Integer hasVoted(Integer userid, Integer postid) { // takes in a vote, checks the votes for the post it applies to and sees if the voting user has voted before.
 		List<Vote> votes = this.getAllVotesByPost(postid);
 		System.out.println("hi " + postid);
 		if(votes != null) {
 		for(int i = 0; i < votes.size(); i++) {
 			if (votes.get(i).getUserid() == userid) {
-				return true;
+				return votes.get(i).getVoteid();
 			}
 		}
-		} return false;
+		} return 0;
 	}
 }

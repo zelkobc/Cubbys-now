@@ -16,6 +16,7 @@ export class PostComponent implements OnInit {
   author: User;
   loggedUser: User = JSON.parse(window.sessionStorage.user);
   replyArray: Reply[] = [];
+  replyInput: string;
   
   constructor(private postServ: PostService, private userServ: UserService, private replyServ: ReplyService) { }
 
@@ -24,8 +25,18 @@ export class PostComponent implements OnInit {
     this.refresh();
   }
 
-  replyButton(newReply: string){
-    this.refresh();
+  replyButton(){
+    let reply: Reply = new Reply();
+    reply.message = (this.replyInput);
+    reply.post = this.inputPost;
+    reply.author = this.loggedUser;
+    console.log(reply.message);
+    console.log(reply);
+    this.replyServ.addReply(reply).subscribe(
+      resp => {
+        this.refresh();
+      }
+    );
   }
 
   editButton(newMessage: string){

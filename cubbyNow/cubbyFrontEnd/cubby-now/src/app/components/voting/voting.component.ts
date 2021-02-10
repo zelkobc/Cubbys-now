@@ -43,6 +43,7 @@ export class VotingComponent implements OnInit {
     this.voteService.checkVote(id, this.loggedUser.id).subscribe(
       resp=> {
         this.voteStatus = resp;
+        console.log(resp);
       }
       
     )
@@ -60,6 +61,7 @@ export class VotingComponent implements OnInit {
     this.newVote.voteid = this.voteStatus;
     this.newVote.userid = JSON.parse(window.sessionStorage.user).id;
     this.newVote.postid = this.relPost.postid;
+    console.log(this.newVote)
     this.voteService.updateVote(this.newVote).subscribe();
   }
 

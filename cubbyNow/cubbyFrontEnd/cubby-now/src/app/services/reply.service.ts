@@ -1,5 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
 import {Reply} from '../models/reply';
 import {UrlService} from './url.service';
 
@@ -16,7 +17,9 @@ export class ReplyService {
 
   ngOnInit(): void{}
 
-  addReply(reply: Reply){
+  addReply(reply: Reply): Observable<object> {
+    console.log(this.url);
+    console.log(reply);
     return this.http.post(this.url, JSON.stringify(reply), {headers: this.regHeaders, withCredentials:true});
   }
 
