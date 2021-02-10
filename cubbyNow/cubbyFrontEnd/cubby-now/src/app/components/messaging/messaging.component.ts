@@ -20,8 +20,9 @@ Messages: Message[];
 Users: User[];
 hasFlag: number;
 authFlag: number;
+alert: string;
 messageString: string;
-@Input() loggedUser: User = window.sessionStorage.user;
+@Input() loggedUser: User = JSON.parse(window.sessionStorage.user);
 roleFlag: number;
 
   constructor(private messageService:MessageService, private userService:UserService) {
@@ -32,6 +33,14 @@ roleFlag: number;
       this.roleFlag = 1;
     this.getUsers();
     }
+    this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
+      resp=> {
+        this.Messages = resp;
+        if(this.Messages.length > 0) {
+          this.hasFlag = 1;
+        }
+      }
+    );
   }
 onSubmit() {
   this.newMessage = new Message;
