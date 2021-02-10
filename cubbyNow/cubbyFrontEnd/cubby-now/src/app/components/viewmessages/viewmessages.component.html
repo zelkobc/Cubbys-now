@@ -1,4 +1,4 @@
-<div *ngIf="Messages">
+<div *ngIf="Messages && loggedUser">
     <h3>Messages</h3>
     <table>
         <tr>
@@ -15,4 +15,9 @@
         </tr>
     </table>
 </div>
-<app-messaging *ngIf="adminFlag || Messages"></app-messaging>
+<div *ngIf="!loggedUser">
+    <p>
+        You are not logged in!
+    </p>
+</div>
+<app-messaging *ngIf="(adminFlag || Messages) "></app-messaging>
