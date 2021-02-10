@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ViewmessagesComponent implements OnInit {
   Messages: Message[];
-  @Input() loggedUser: User = JSON.parse(window.sessionStorage.user)
+  loggedUser: User;
   loggedUserRole: number;
   adminFlag: number;
   alert: string;
@@ -19,20 +19,23 @@ export class ViewmessagesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("hi" + JSON.parse(window.sessionStorage.user))
+    if(window.sessionStorage.user) {
     this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
       resp=> {
         this.Messages = resp;
         console.log(this.Messages);
       }
     );
-    if(JSON.parse(window.sessionStorage.user)) {
-      console.log()
     }
-    if(this.loggedUser) {
+    if(window.sessionStorage.user) {
+      this.loggedUser = JSON.parse(window.sessionStorage.user)
+    } else {
+      this.loggedUser = null;
+    }
+    if(JSON.parse(window.sessionStorage.user)) {
       this.loggedUserRole= JSON.parse(window.sessionStorage.user).role.id;
     
-    if(this.loggedUserRole > 1) {
+    if((JSON.parse(window.sessionStorage.user).role.id > 1)) {
 
       this.adminFlag = 1;
     }
