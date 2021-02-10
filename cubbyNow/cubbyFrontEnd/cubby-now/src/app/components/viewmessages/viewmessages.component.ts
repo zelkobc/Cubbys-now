@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
 import { MessageService } from 'src/app/services/message.service';
@@ -11,21 +11,33 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ViewmessagesComponent implements OnInit {
   Messages: Message[];
-  loggedUser: User = window.sessionStorage.user
-  loggedUserRole: number = JSON.parse(window.sessionStorage.user).role.id;
+  @Input() loggedUser: User = JSON.parse(window.sessionStorage.user)
+  loggedUserRole: number;
   adminFlag: number;
+  alert: string;
   constructor(private messageService:MessageService, private userService:UserService) {
    }
 
   ngOnInit(): void {
+    console.log("hi" + JSON.parse(window.sessionStorage.user))
     this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
       resp=> {
         this.Messages = resp;
         console.log(this.Messages);
       }
     );
+    if(JSON.parse(window.sessionStorage.user)) {
+      console.log()
+    }
+    if(this.loggedUser) {
+      this.loggedUserRole= JSON.parse(window.sessionStorage.user).role.id;
+    
     if(this.loggedUserRole > 1) {
+
       this.adminFlag = 1;
     }
+  } else {
+    this.alert = "You are not logged in!"
+  }
   }
 }
