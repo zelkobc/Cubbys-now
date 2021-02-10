@@ -17,7 +17,19 @@ import { CommonModule } from '@angular/common';
 import { ViewmessagesComponent } from './components/viewmessages/viewmessages.component';
 import { VotingComponent } from './components/voting/voting.component';
 import { ClassCalendarComponent } from './components/class-calendar/class-calendar.component';
-import { ViewOneGroupComponent } from './components/view-one-group/view-one-group.component';  
+import { ViewOneGroupComponent } from './components/view-one-group/view-one-group.component';   
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import googleCalendarPlugin   from '@fullcalendar/google-calendar';
+import  iCalendarPlugin from '@fullcalendar/icalendar'
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  googleCalendarPlugin,
+  iCalendarPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -40,7 +52,8 @@ import { ViewOneGroupComponent } from './components/view-one-group/view-one-grou
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

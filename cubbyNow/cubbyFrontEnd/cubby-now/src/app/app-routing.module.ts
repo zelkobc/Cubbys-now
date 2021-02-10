@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClassCalendarComponent } from './components/class-calendar/class-calendar.component';
 import { GlobalhomeComponent } from './components/globalhome/globalhome.component';
 import { MessagingComponent } from './components/messaging/messaging.component';
 import {PostPageComponent} from './components/post-page/post-page.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'messaging',
     component: ViewmessagesComponent
+  },
+  {
+    path: 'calendar',
+    component: ClassCalendarComponent
   },
   {
     path: 'groups',

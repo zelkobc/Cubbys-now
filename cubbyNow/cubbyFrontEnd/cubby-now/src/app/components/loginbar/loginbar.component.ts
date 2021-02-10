@@ -37,7 +37,7 @@ export class LoginbarComponent implements OnInit {
       this.pass = alreadyLogged.password;
       this.regUser = '';
       this.regPass = '';
-      this.logIn();
+      this.loggedUser = alreadyLogged;
     } else {
       this.user = '';
       this.pass = '';
@@ -57,6 +57,7 @@ export class LoginbarComponent implements OnInit {
             this.loggedUser = resp;
             window.sessionStorage.user = JSON.stringify(this.loggedUser);
             this.logInEvent.emit();
+            window.location.reload();
           }
           else{
             alert("Invalid Credentials! Please try again!");
@@ -69,11 +70,12 @@ export class LoginbarComponent implements OnInit {
   logOut() {
     this.userService.logoutUser().subscribe(
       resp => {
-        this.loggedUser = null;
+        // this.loggedUser = null;
+        window.sessionStorage.removeItem("user");
         this.user = '';
         this.pass = '';
 
-        window.sessionStorage.user = JSON.stringify(this.loggedUser);
+        // window.sessionStorage.user = JSON.stringify(this.loggedUser);
         this.logOutEvent.emit();
         window.location.reload();
       }

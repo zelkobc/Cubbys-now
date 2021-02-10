@@ -15,32 +15,34 @@ export class ViewmessagesComponent implements OnInit {
   loggedUserRole: number;
   adminFlag: number;
   alert: string;
-  constructor(private messageService:MessageService, private userService:UserService) {
-   }
+  constructor(private messageService: MessageService, private userService: UserService) {
+  }
 
   ngOnInit(): void {
-    if(window.sessionStorage.user) {
-    this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
-      resp=> {
-        this.Messages = resp;
-        console.log(this.Messages);
-      }
-    );
+    if (window.sessionStorage.user) {
+      this.messageService.getMessages(JSON.parse(window.sessionStorage.user).id).subscribe(
+        resp => {
+          this.Messages = resp;
+          console.log(this.Messages);
+        }
+      );
     }
-    if(window.sessionStorage.user) {
+    if (window.sessionStorage.user) {
       this.loggedUser = JSON.parse(window.sessionStorage.user)
     } else {
       this.loggedUser = null;
-    }
-    if(JSON.parse(window.sessionStorage.user)) {
-      this.loggedUserRole= JSON.parse(window.sessionStorage.user).role.id;
-    
-    if((JSON.parse(window.sessionStorage.user).role.id > 1)) {
 
-      this.adminFlag = 1;
+      if ((window.sessionStorage.user)) {
+        this.loggedUserRole = JSON.parse(window.sessionStorage.user).role.id;
+
+        if ((JSON.parse(window.sessionStorage.user).role.id > 1)) {
+
+          this.adminFlag = 1;
+        }
+
+      } else {
+        this.alert = "You are not logged in!"
+      }
     }
-  } else {
-    this.alert = "You are not logged in!"
-  }
   }
 }
