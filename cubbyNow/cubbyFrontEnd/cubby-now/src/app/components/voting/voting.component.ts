@@ -17,13 +17,18 @@ export class VotingComponent implements OnInit {
   newVote: Vote;
   voteTotal: number;
   voteAvg: number;
-  loggedUser : User = JSON.parse(window.sessionStorage.user);
+  loggedUser : User;
+  voteStatus : number;
   @Input() relPost: Post;
-  voteStatus: number;
 
   constructor(private voteService:VoteService, private userService:UserService, private postService:PostService) { }
 
   ngOnInit(): void {
+    if(window.sessionStorage.user) {
+      this.loggedUser = JSON.parse(window.sessionStorage.user)
+    } else {
+      this.loggedUser = null;
+    }
     this.getAllVotes(this.relPost.postid);
     this.checkVote(this.relPost.postid);
   }
@@ -39,14 +44,22 @@ export class VotingComponent implements OnInit {
       }
     )
   }
-  checkVote(id:number){
+  checkVote(id:number): number{ // this returns a number because it makes the if statement containing it make more sense. It is not strictly necessary.
+    if(this.loggedUser) {
     this.voteService.checkVote(id, this.loggedUser.id).subscribe(
       resp=> {
         this.voteStatus = resp;
         console.log(resp);
+        if(resp) {
+          return 1
+        } else {
+          return 0
+        }
       }
-      
-    )
+    ); 
+    } else {
+      return 0
+    }
   }
   setVote(rating: number) {
     this.newVote = new Vote;
