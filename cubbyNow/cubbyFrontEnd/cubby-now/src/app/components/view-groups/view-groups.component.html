@@ -1,6 +1,14 @@
 
 <div *ngIf = "done">
     <h2>{{message}}</h2>
+    <div *ngIf = "teacher && students">
+        <p>Please enter a name for the group</p>
+        <input type = "text" [(ngModel)] = "groupName">
+        <div  *ngFor = "let student of students" class="checkbox">
+            <label><input type="checkbox" value="" class = "studentcheckbox" id = "student.id" ngModel>{{student.username}}</label>
+          </div>
+          <button (click) = "createGroup()">Create group!</button>
+    </div>
     <ul *ngIf = "groups" class="list-group">
         <li>
             <a *ngFor = "let group of groups" class="list-group-item" [routerLink]="['/onegroup', group.id]" routerLinkActive="active">{{group.name}}</a>

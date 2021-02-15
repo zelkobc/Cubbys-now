@@ -53,6 +53,12 @@ export class UserService {
     );
   }
 
+  getUsersByTeacherId(id: number): Observable<User[]>{
+    return this.http.get(this.usersUrl + "/byteacher/" + id, {withCredentials:true}).pipe(
+      map(resp => resp as User[])
+    );
+  }
+
   getAllUsers(): Observable<User[]> {
     return this.http.get(this.usersUrl, {withCredentials:true}).pipe(
       map(resp => resp as User[])
