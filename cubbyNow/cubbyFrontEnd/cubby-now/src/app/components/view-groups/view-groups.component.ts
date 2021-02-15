@@ -16,7 +16,7 @@ export class ViewGroupsComponent implements OnInit {
   groups: Group[];
   message: string;
   done: boolean = false;
-
+  teacher: boolean = false;
 
   constructor(private userService: UserService) { 
     this.fillGroups();
@@ -29,11 +29,15 @@ export class ViewGroupsComponent implements OnInit {
 
   fillGroups()
   {
-    let person = JSON.parse(window.sessionStorage.getItem("user"));
+    let person = JSON.parse(window.sessionStorage.getItem("user")) as User;
     if (person)
     {
       this.groups = person.groups;
       this.message = "All Groups"
+      if (person.role.id == 9)
+      {
+        this.teacher = true;
+      }
     }
     else
     {

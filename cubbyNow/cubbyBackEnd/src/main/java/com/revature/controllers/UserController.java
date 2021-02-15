@@ -35,6 +35,7 @@ public class UserController {
 		}
 	}
 	
+	
 
 	@GetMapping(path ="username/{username}")
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username){
@@ -44,6 +45,11 @@ public class UserController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	@GetMapping(path = "/byteacher/{teacherId}")
+	public ResponseEntity<List<User>> getUsersByTeacherId(@PathVariable Integer teacherId){
+		return ResponseEntity.ok(this.userService.getStudentsByTeacherId(teacherId));
 	}
 	
 	@GetMapping

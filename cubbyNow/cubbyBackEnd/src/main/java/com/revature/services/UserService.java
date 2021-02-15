@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,17 @@ public class UserService {
 	
 	public User getUserByUsername(String username) {
 		return userDao.findUserByUsername(username);
+	}
+	
+	public List<User> getStudentsByTeacherId(Integer teacherId)
+	{
+		List<Integer> ids = userDao.getStudentIdsByTeacherId(teacherId);
+		List<User> result = new ArrayList<User>();
+		for(Integer i: ids)
+		{
+			result.add(userDao.findById(i).get());
+		}
+		return result;
 	}
 	
 	public List<User> getAllUsers(){
